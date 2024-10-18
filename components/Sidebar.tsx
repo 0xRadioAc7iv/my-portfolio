@@ -10,7 +10,7 @@ const SidebarLinks = [
 
 const Sidebar = () => {
   return (
-    <div className="flex flex-col gap-6 text-5xl justify-center fixed top-0 h-screen w-64">
+    <div className="flex flex-col gap-4 text-4xl justify-center fixed top-0 h-screen w-64">
       {SidebarLinks.map((link) => (
         <Link key={link.name} href={`#${link.link}`} className="sidebar-hover">
           {link.name}
