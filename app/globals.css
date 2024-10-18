@@ -29,3 +29,9 @@ body {
     text-wrap: balance;
   }
 }
+
+@layer components {
+  .sidebar-hover {
+    @apply hover:underline underline-offset-4 hover:translate-x-2 transition-transform duration-200 ease-in-out;
+  }
+}

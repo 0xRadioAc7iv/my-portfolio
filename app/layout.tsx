@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
+import Sidebar from "@/components/Sidebar";
 
 export const metadata: Metadata = {
   title: "Manav Gadhiya",
@@ -14,8 +14,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="flex flex-col items-center">
-        <Navbar />
+      <body className="flex p-10">
+        <div className="w-full">
+          <Sidebar />
+        </div>
         {children}
       </body>
     </html>
