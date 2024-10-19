@@ -1,9 +1,19 @@
 import Projects from "@/components/Projects";
+import Image from "next/image";
 
 export default function Home() {
   return (
-    <div id="top" className="flex flex-col items-center w-1/2">
-      <section className="pt-40">
+    <div id="top" className="flex flex-col items-center w-2/5">
+      <section className="flex flex-col items-center pt-40">
+        <div>
+          <Image
+            src="/profile.jpg"
+            alt="It's me"
+            width="150"
+            height="300"
+            className="pb-4 rounded-lg"
+          />
+        </div>
         <div className="text-3xl text-center">Hey! I'm Manav</div>
         <div>
           <div className="mt-5 text-pretty text-center">
