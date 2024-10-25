@@ -85,108 +85,26 @@ Apart from code, i'm passionate about video games, astronomy &
 
   projects: [
     {
-      title: "Sol UI",
-      href: "https://sol-ui.vercel.app/",
-      dates: "September 2024",
+      title: "FuelCaster",
+      href: "https://github.com/ForkingAwesome/fuelcaster",
+      dates: "April 2024",
       active: true,
       description:
-        "Developed an open-source logging and analytics platform for OpenAI: Log your ChatGPT API requests, analyze costs, and improve your prompts.",
-      technologies: ["Next.js", "Typescript", "TailwindCSS"],
+        "FuelCaster, featuring the VadaPav Token, is a faucet for the Fuel Network built on Farcaster Frames.",
+      technologies: ["Next.js", "Farcaster Frames", "Fuel", "Sway"],
       links: [
         {
           type: "Website",
-          href: "https://sol-ui.vercel.app/",
+          href: "https://x.com/0xSarthak13/status/1788907538043531380",
           icon: <Icons.globe className="size-3" />,
         },
         {
           type: "Source",
-          href: "https://github.com/Not-Sarthak/sol-ui",
+          href: "https://github.com/ForkingAwesome/fuelcaster",
           icon: <Icons.github className="size-3" />,
         },
       ],
-      image: "",
-      video: "/projects/solui.mp4",
-    },
-    {
-      title: "Foundry Stablecoin",
-      href: "https://github.com/Not-Sarthak/defi-stablecoin",
-      dates: "August 2024",
-      active: true,
-      description:
-        "This project is meant to be a stablecoin where users can deposit WETH and WBTC in exchange for a token that will be pegged to the USD.",
-      technologies: ["Foundry", "Solidity", "Chainlink", "Open Zeppelin"],
-      links: [
-        {
-          type: "Source",
-          href: "https://github.com/Not-Sarthak/defi-stablecoin",
-          icon: <Icons.github className="size-3" />,
-        },
-      ],
-      image: "",
-      video: "/projects/stablecoin.mp4",
-    },
-    {
-      title: "Merkle Airdrop",
-      href: "https://github.com/Not-Sarthak/merkle-airdrop",
-      dates: "August 2024",
-      active: true,
-      description:
-        "An introduction to the Merkle Airdrop and Signatures project",
-      technologies: ["Foundry", "Solidity", "EIP-4844"],
-      links: [
-        {
-          type: "Source",
-          href: "https://github.com/Not-Sarthak/merkle-airdrop",
-          icon: <Icons.github className="size-3" />,
-        },
-      ],
-      image: "/projects/merkle.png",
-      video: "",
-    },
-    {
-      title: "AO Calculator",
-      href: "https://ao-unit-converter.ar-io.net/",
-      dates: "September 2024",
-      active: true,
-      description:
-        "Convert effortlessly between AO and Armstrong units. No need to count zeroes.",
-      technologies: ["Next.js", "Typescript", "TailwindCSS", "Arweave", "AO"],
-      links: [
-        {
-          type: "Website",
-          href: "https://ao-unit-converter.ar-io.net/",
-          icon: <Icons.globe className="size-3" />,
-        },
-        {
-          type: "Source",
-          href: "https://github.com/Not-Sarthak/ao-unit-converter",
-          icon: <Icons.github className="size-3" />,
-        },
-      ],
-      image: "",
-      video: "/projects/ao-calculator.mp4",
-    },
-    {
-      title: "Eth Mumbai",
-      href: "https://mumbaieth.vercel.app/",
-      dates: "March 2024",
-      active: true,
-      description:
-        "A website for EthMumbai with an SVG logo that changes colors based on user preferences and allows users to mint it as a NFT.",
-      technologies: ["Next.js", "JavaScript", "TailwindCSS", "Zora"],
-      links: [
-        {
-          type: "Website",
-          href: "https://mumbaieth.vercel.app/",
-          icon: <Icons.globe className="size-3" />,
-        },
-        {
-          type: "Source",
-          href: "https://github.com/Not-Sarthak/eth-mumbai",
-          icon: <Icons.github className="size-3" />,
-        },
-      ],
-      image: "/projects/ethmumbai.png",
+      image: "/projects/fuelcaster.png",
       video: "",
     },
     {
@@ -219,49 +137,107 @@ Apart from code, i'm passionate about video games, astronomy &
       video: "",
     },
     {
-      title: "FuelCaster",
-      href: "https://github.com/ForkingAwesome/fuelcaster",
-      dates: "April 2024",
+      title: "Foundry Stablecoin",
+      href: "https://github.com/0xRadioAc7iv/foundry-defi-stablecoin-f23",
+      dates: "June 2024",
       active: true,
       description:
-        "FuelCaster, featuring the VadaPav Token, is a faucet for the Fuel Network built on Farcaster Frames.",
-      technologies: ["Next.js", "Farcaster Frames", "Fuel", "Sway"],
+        "This project is meant to be a stablecoin where users can deposit WETH and WBTC in exchange for a token that will be pegged to the USD.",
+      technologies: ["Foundry", "Solidity", "Chainlink", "Open Zeppelin"],
       links: [
         {
-          type: "Website",
-          href: "https://x.com/0xSarthak13/status/1788907538043531380",
-          icon: <Icons.globe className="size-3" />,
-        },
-        {
           type: "Source",
-          href: "https://github.com/ForkingAwesome/fuelcaster",
+          href: "https://github.com/0xRadioAc7iv/foundry-defi-stablecoin-f23",
           icon: <Icons.github className="size-3" />,
         },
       ],
-      image: "/projects/fuelcaster.png",
+      image: "",
+      video: "/projects/stablecoin.mp4",
+    },
+    {
+      title: "AO Token Deployer",
+      href: "https://github.com/0xRadioAc7iv/token-deployer",
+      dates: "June 2024",
+      active: true,
+      description: "A No Code Token Deployer for Arweave's AOS",
+      technologies: ["React", "Typescript", "Tailwind", "Lua"],
+      links: [
+        {
+          type: "Source",
+          href: "https://github.com/0xRadioAc7iv/token-deployer",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "/projects/token-deployer.png",
       video: "",
     },
     {
-      title: "Quill",
-      href: "https://quill-flow.vercel.app/",
-      dates: "July 2023",
+      title: "HTTP Server from Scratch",
+      href: "https://github.com/0xRadioAc7iv/http-server-from-scratch",
+      dates: "September 2024",
       active: true,
-      description:
-        "Quill, built on the Flow blockchain, empowers bloggers with ownership, control, and direct monetization of their content.",
-      technologies: ["React.js", "JavaScript", "Cadence", "CSS", "Material UI"],
+      description: "HTTP Server Implementation from Scratch in Typescript",
+      technologies: ["Node.js", "TypeScript"],
       links: [
         {
-          type: "Website",
-          href: "https://quill-flow.vercel.app/",
-          icon: <Icons.globe className="size-3" />,
-        },
-        {
           type: "Source",
-          href: "https://github.com/Not-Sarthak/quill",
+          href: "https://github.com/0xRadioAc7iv/http-server-from-scratch",
           icon: <Icons.github className="size-3" />,
         },
       ],
-      image: "/projects/quill.png",
+      image: "/projects/http-server.png",
+      video: "",
+    },
+    {
+      title: "Reverse Proxy CLI",
+      href: "https://github.com/0xRadioAc7iv/caching-proxy-server-cli",
+      dates: "September 2024",
+      active: true,
+      description:
+        "CLI Tool for a Reverse Proxy Server with Caching Capabilities",
+      technologies: ["Express.js", "Node.js"],
+      links: [
+        {
+          type: "Source",
+          href: "https://github.com/0xRadioAc7iv/caching-proxy-server-cli",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "/projects/reverse-proxy.png",
+      video: "",
+    },
+    {
+      title: "Weather API Service",
+      href: "https://github.com/0xRadioAc7iv/weather-api-with-caching",
+      dates: "October 2024",
+      active: true,
+      description: "Simple Weather API with Redis Caching",
+      technologies: ["Express.js", "Node.js", "Redis"],
+      links: [
+        {
+          type: "Source",
+          href: "https://github.com/0xRadioAc7iv/weather-api-with-caching",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "/projects/weather-api.jpg",
+      video: "",
+    },
+    {
+      title: "Load Balancer",
+      href: "https://github.com/0xRadioAc7iv/load-balancer-nodejs",
+      dates: "October 2024",
+      active: true,
+      description: "Load Balancer Implementation from Scratch using Node.js",
+      technologies: ["Express.js", "Node.js"],
+      links: [
+        {
+          type: "Source",
+          href: "https://github.com/0xRadioAc7iv/load-balancer-nodejs",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "/projects/load-balancer.jpg",
       video: "",
     },
   ],
