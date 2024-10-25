@@ -85,6 +85,35 @@ Apart from code, i'm passionate about video games, astronomy &
 
   projects: [
     {
+      title: "Stellock",
+      href: "https://github.com/0xRadioAc7iv/stellock",
+      dates: "June 2024",
+      active: true,
+      description: "Stellock allows you to use your web2 logins on web3 dApps!",
+      technologies: [
+        "Next.js",
+        "Typescript",
+        "TailwindCSS",
+        "Rust",
+        "Soroban",
+        "Prisma",
+      ],
+      links: [
+        {
+          type: "Demo",
+          href: "https://youtu.be/sZ9Bmaunye0",
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "Source",
+          href: "https://github.com/0xRadioAc7iv/stellock",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "/projects/stellock.png",
+      video: "",
+    },
+    {
       title: "FuelCaster",
       href: "https://github.com/ForkingAwesome/fuelcaster",
       dates: "April 2024",
@@ -106,6 +135,41 @@ Apart from code, i'm passionate about video games, astronomy &
       ],
       image: "/projects/fuelcaster.png",
       video: "",
+    },
+    {
+      title: "AO Token Deployer",
+      href: "https://github.com/0xRadioAc7iv/token-deployer",
+      dates: "June 2024",
+      active: true,
+      description: "A No Code Token Deployer for Arweave's AOS",
+      technologies: ["React", "Typescript", "Tailwind", "Lua"],
+      links: [
+        {
+          type: "Source",
+          href: "https://github.com/0xRadioAc7iv/token-deployer",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "/projects/token-deployer.png",
+      video: "",
+    },
+    {
+      title: "Foundry Stablecoin",
+      href: "https://github.com/0xRadioAc7iv/foundry-defi-stablecoin-f23",
+      dates: "June 2024",
+      active: true,
+      description:
+        "This project is meant to be a stablecoin where users can deposit WETH and WBTC in exchange for a token that will be pegged to the USD.",
+      technologies: ["Foundry", "Solidity", "Chainlink", "Open Zeppelin"],
+      links: [
+        {
+          type: "Source",
+          href: "https://github.com/0xRadioAc7iv/foundry-defi-stablecoin-f23",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "",
+      video: "/projects/stablecoin.mp4",
     },
     {
       title: "BaseWave",
@@ -137,41 +201,6 @@ Apart from code, i'm passionate about video games, astronomy &
       video: "",
     },
     {
-      title: "Foundry Stablecoin",
-      href: "https://github.com/0xRadioAc7iv/foundry-defi-stablecoin-f23",
-      dates: "June 2024",
-      active: true,
-      description:
-        "This project is meant to be a stablecoin where users can deposit WETH and WBTC in exchange for a token that will be pegged to the USD.",
-      technologies: ["Foundry", "Solidity", "Chainlink", "Open Zeppelin"],
-      links: [
-        {
-          type: "Source",
-          href: "https://github.com/0xRadioAc7iv/foundry-defi-stablecoin-f23",
-          icon: <Icons.github className="size-3" />,
-        },
-      ],
-      image: "",
-      video: "/projects/stablecoin.mp4",
-    },
-    {
-      title: "AO Token Deployer",
-      href: "https://github.com/0xRadioAc7iv/token-deployer",
-      dates: "June 2024",
-      active: true,
-      description: "A No Code Token Deployer for Arweave's AOS",
-      technologies: ["React", "Typescript", "Tailwind", "Lua"],
-      links: [
-        {
-          type: "Source",
-          href: "https://github.com/0xRadioAc7iv/token-deployer",
-          icon: <Icons.github className="size-3" />,
-        },
-      ],
-      image: "/projects/token-deployer.png",
-      video: "",
-    },
-    {
       title: "HTTP Server from Scratch",
       href: "https://github.com/0xRadioAc7iv/http-server-from-scratch",
       dates: "September 2024",
@@ -186,24 +215,6 @@ Apart from code, i'm passionate about video games, astronomy &
         },
       ],
       image: "/projects/http-server.png",
-      video: "",
-    },
-    {
-      title: "Reverse Proxy CLI",
-      href: "https://github.com/0xRadioAc7iv/caching-proxy-server-cli",
-      dates: "September 2024",
-      active: true,
-      description:
-        "CLI Tool for a Reverse Proxy Server with Caching Capabilities",
-      technologies: ["Express.js", "Node.js"],
-      links: [
-        {
-          type: "Source",
-          href: "https://github.com/0xRadioAc7iv/caching-proxy-server-cli",
-          icon: <Icons.github className="size-3" />,
-        },
-      ],
-      image: "/projects/reverse-proxy.png",
       video: "",
     },
     {
