@@ -4,7 +4,7 @@ import { HomeIcon, NotebookIcon } from "lucide-react";
 export const DATA = {
   name: "Manav Gadhiya",
   initials: "MG",
-  url: "",
+  url: "https://www.0xradioactiv.xyz",
   description: "Developer, Gamer, Procrastinator",
   summary: `Hey! I'm Manav 👋
 
