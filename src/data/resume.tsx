@@ -5,7 +5,7 @@ export const DATA = {
   name: "Manav Gadhiya",
   initials: "MG",
   url: "https://www.0xradioactiv.xyz",
-  description: "Developer, Gamer, Procrastinator",
+  description: "Developer, Gamer, Explorer",
   summary: `Hey! I'm Manav 👋
 
 I'm a Software Engineer specializing in Backend. I have experience working in fields
