@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     siteName: `${DATA.name}`,
     locale: "en_US",
     type: "website",
-    images: "/me.jpg",
+    images: "/screenshot.jpg",
   },
   robots: {
     index: true,
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   twitter: {
     title: `${DATA.name}`,
     card: "summary_large_image",
-    images: "/me.jpg",
+    images: "/screenshot.jpg",
   },
   verification: {
     google: "",
