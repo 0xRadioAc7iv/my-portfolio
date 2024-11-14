@@ -11,7 +11,7 @@ export const DATA = {
 I'm a Software Engineer specializing in Backend. I have experience working in fields
 such as Blockchain & Game Dev. I enjoy building and learning about software and how it works. 💻
 
-I have won over 5 hackathons 🏆 and I'm always open to collaboration, so do reach out to me if you'd like to work together.
+I have won over 5 hackathons 🏆 and I'm always open to collaboration, so do reach out to me if you'd like to work together. I'm always up for a challenge and excited to learn something new.
 
 Apart from code, i'm passionate about video games, astronomy &
             cricket. Also, I love pizza 🍕 (w/ extra cheeze ofc).
