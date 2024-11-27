@@ -27,7 +27,7 @@ Apart from code, i'm passionate about video games, astronomy &
   ],
   navbar: [
     { href: "/", icon: HomeIcon, label: "Home" },
-    { href: "/blog", icon: NotebookIcon, label: "Blog" },
+    { href: "/blogs", icon: NotebookIcon, label: "Blog" },
   ],
   contact: {
     email: "manav18gadhiya@gmail.com",
