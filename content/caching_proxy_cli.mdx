@@ -1,6 +1,6 @@
 ---
 title: "How to Create a Basic Reverse Proxy"
-publishedAt: "2024-11-27"
+publishedAt: "2024-11-30"
 summary: "In this blog we explore what reverse proxies are and create one from scratch using node.js"
 ---
 
@@ -22,26 +22,274 @@ So, Let's get started! 🚀
 
 ### So, what even is a Proxy?
 
-Talk about what a reverse proxy is and other types of proxies
+Before diving into reverse proxies, let's first understand what a proxy is. At its core, a proxy is like a middleman that stands between two entities—in most cases, a client (like your browser) and a server (where websites or applications live). Instead of the client directly talking to the server, the proxy handles the communication.
 
-Talk about the use cases and advantages of Reverse Proxies
+### Types of Proxies
+
+There are two main types of proxies you'll come across:
+
+#### Forward Proxy
+
+A forward proxy sits in front of the client. It takes requests from the client, sends them to the server, and then returns the server's response to the client. Forward proxies are commonly used for:
+
+- **Hiding client identity**: They mask the client's IP address for anonymity.
+- **Content filtering**: For example, blocking certain websites in a corporate or educational network.
+  Think of a forward proxy as a personal assistant who makes calls on your behalf.
+
+#### Reverse Proxy
+
+A reverse proxy, on the other hand, sits in front of the server. When a client sends a request, it goes to the reverse proxy first, which then forwards it to the appropriate server. The server’s response is then sent back to the client via the proxy.
+
+A reverse proxy acts like a gatekeeper, deciding how and where requests should be handled. It provides several advantages, which we'll explore next.
+
+#### Why Use a Reverse Proxy?
+
+Reverse proxies are incredibly powerful and have become a staple in modern web infrastructure. Here are some key use cases:
+
+- #### Load Balancing
+
+  A reverse proxy can distribute incoming traffic across multiple servers, ensuring no single server is overwhelmed. This improves reliability and helps scale applications to handle more users.
+
+- #### Caching
+
+  Reverse proxies can cache responses from servers, so repeated requests for the same content (like images or static pages) can be served faster without hitting the server.
+
+- #### Security
+
+  By acting as an intermediary, a reverse proxy hides the details of the backend servers from the client. This can protect the servers from direct attacks and add an extra layer of security.
+  They can also handle SSL termination, offloading the encryption and decryption workload from the backend servers.
+
+- #### Simplified Maintenance
+  Backend services can be updated or replaced without disrupting client traffic, as the proxy can seamlessly reroute requests.
+
+**TL;DR**
+
+A forward proxy acts as an intermediary for the client, helping it communicate with the server. A reverse proxy, on the other hand, manages client requests on behalf of the server. Now that you know what proxies are and how they work, it's time for the fun part, building one from scratch! Let's dive in! 🚀
+
+---
 
 ### It's BUILD Time!
 
-Initial Setup
+We'll be building our reverse proxy using **Node.js** for the runtime, **Express** to create a server and **Commander** to handle command-line functionality.
 
-Install Dependencies
+#### Step 1: Prerequisites
 
-Walk through code w/ simplified code snippets and images (Show outputs)
+First, ensure you have **Node.js** and **npm** installed on your system. If not, you can download them from [nodejs.org](https://nodejs.org).
+
+#### Step 2: Set Up Your Project
+
+Next, create a directory, `cd` into it and initialize a node project:
+
+```bash
+mkdir reverse-proxy
+cd reverse-proxy
+npm init -y
+```
+
+This creates a new **package.json** file with default values, which we'll use to manage dependencies.
+
+#### Step 3: Install Dependencies
+
+Install the required libraries using npm:
+
+```bash
+npm i express commander
+```
+
+#### Step 4: Configure the bin Field
+
+To turn this into a proper CLI tool, we need to configure the bin field in package.json. Add this section below the dependencies:
+
+```json
+"bin": {
+    "reverse-proxy": "./bin/index.js"
+  }
+```
+
+#### What's the bin Field?
+
+When building a CLI tool, the bin field allows users to run your command directly from the terminal, without needing to specify the full script path. Here's what it does:
+
+- Key **reverse-proxy**: Defines the name of the CLI command users will run.
+- Value **./bin/index.js**: Points to the script that contains the tool's logic.
+
+Once this is set up, users can run your tool by typing **reverse-proxy** in the terminal.
+
+#### Step 5: Organize Your Project
+
+1. Create a folder named **bin**
+2. Inside the bin folder, create a file named **index.js**
+
+And that's it for the setup! Now, we'll dive into writing the actual logic.
+
+---
+
+#### 1. Shebang and Imports
+
+At the very top of the file, we add:
+
+```javascript
+#!/usr/bin/env node
+import { Command } from "commander";
+import express from "express";
+```
+
+- **#!/usr/bin/env node**: This shebang line tells the operating system to execute the file using Node.js. It ensures that our CLI tool works as expected when run directly from the terminal.
+- **Command**: We import Command from the Commander library to handle CLI arguments and options.
+- **express**: We import Express to create our proxy server.
+
+#### 2. Setup for Commander and Express
+
+Next, we initialize the necessary modules:
+
+```javascript
+const program = new Command();
+const app = express();
+let currentURL = "";
+```
+
+- **program**: This initializes a new CLI command using Commander.
+- **app**: This creates an Express application instance.
+- **currentURL**: This variable will store the origin URL provided by the user.
+
+#### 3. Defining the CLI Command
+
+We use Commander to configure our CLI tool:
+
+```javascript
+program
+  .name("reverse-proxy")
+  .description("A Proxy Server CLI")
+  .version("1.0.0");
+```
+
+#### 4. Adding CLI Options
+
+We specify the options that users can pass to the CLI.
+
+```javascript
+program
+  .option("-p, --port <port>", "port number")
+  .option("-o, --origin <origin_url>", "origin URL")
+  .description("Start a Proxy Server");
+```
+
+The above code defines CLI options for **--port** (proxy server's port) and **--origin** (target URL), both required to start the proxy. The last line defines the description for the command.
+
+#### 5. Defining the Logic
+
+```javascript
+.action((options) => {
+    const port = options.port;
+    const origin = options.origin;
+
+    if (!port) {
+      console.error("Required Argument --port <port_number>");
+      return;
+    }
+
+    if (!origin) {
+      console.error("Required Argument --origin <origin_url>");
+      return;
+    }
+
+    const portNum = parseInt(port);
+    currentURL = origin;
+  });
+```
+
+Now, add a method called 'action' to the above chain of methods and add this code to it. What's happening here is we have created two constants `port` and `origin` taking values from the `options` parameter. The options variable is what captures the values we enter when we run the command.
+
+Next, we just check if `port` and `origin` exists or not. if they don't, an error message is printed and command execution is stopped. Then, The `port` value is converted to an integer using `parseInt()` and stored in `portNum` for further use. The `origin` URL is stored in `currentURL`, which will be used later in the proxy logic.
+
+Now, inside the action method itself, add the following code.
+
+```javascript
+app.use("*", async (req, res) => {
+  const targetUrl = currentURL + req.baseUrl;
+
+  try {
+    const response = await fetch(targetUrl, {
+      method: req.method,
+      headers: req.headers,
+      body: req.method !== "GET" ? req.body : undefined,
+    });
+
+    const body = await response.text();
+    res.status(response.status).send(body);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      error: "Failed to fetch the resource from the target URL",
+      details: error.message,
+    });
+  }
+});
+```
+
+- **app.use("\*")**
+
+  This middleware intercepts all HTTP requests, regardless of the URL or HTTP method.
+
+- **Constructing the Target URL**
+
+  The proxy combines the currentURL with the incoming request's baseUrl to create the targetUrl.
+  For example, if currentURL is **https://jsonplaceholder.typicode.com** and the request is for **/posts**, the targetUrl becomes **https://jsonplaceholder.typicode.com/posts**.
+
+- **Forwarding the Request**
+
+  Uses the Fetch API to send the request to the targetUrl.
+  Copies the original request's HTTP method, headers, and (if applicable) body.
+
+- **Handling the Response**
+
+  The response from the target server is forwarded back to the client.
+  GET requests don't include a body, but for other methods (e.g., POST, PUT), the body is forwarded as well.
+
+- **Error Handling**
+
+  If something goes wrong while forwarding the request, it logs the error and sends a 500 status code with an error message back to the client.
+
+#### 6. Starting the Server
+
+Still inside the action method, we start the Express server on port `portNum`.
+
+```javascript
+app.listen(portNum, () => {
+  console.log(
+    `Reverse Proxy started for URL: ${currentURL} at http://localhost:${portNum}`
+  );
+});
+```
+
+#### 7. Parsing the CLI Input
+
+Add this line at the bottom of the code.
+
+```javascript
+program.parse();
+```
+
+This processes the command-line input and triggers the appropriate action defined in the program.action block
+
+---
+
+### Example Usage
+
+```bash
+reverse-proxy --port 8080 --origin https://jsonplaceholder.typicode.com
+```
+
+With this, your reverse proxy is live, forwarding requests from **http://localhost:3000** to **https://jsonplaceholder.typicode.com**.
+
+---
 
 ### Conclusion
 
-Link to Github Repo
+And it's DONE! 🎉 Congratulations on building your very own Reverse Proxy from scratch. You've not only gained a deeper understanding of how proxies work, but you've also written a fully functional CLI tool using **Node.js**, **Express**, and **Commander**.
 
-Ask for Feedback or Contribution to repo
+The full codebase is available on my [GitHub Repo](https://github.com/0xRadioAc7iv/caching-proxy-server-cli). Feel free to explore it, suggest improvements, or even contribute! 🫡
 
-Talk what the next blog will be about
+Since this is my first blog post, I'd really appreciate any feedback or suggestions you have by sending me an [email](mailto:manav18gadhiya@gmail.com). Whether it's about the code, the blog structure, or just general advice, feel free to let me know.
 
-```jsx
-console.log("Hello World");
-```
+Stay tuned for the next blog!
