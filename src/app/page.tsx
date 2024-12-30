@@ -217,7 +217,7 @@ export default function Page() {
                   </Link>{" "}
                   /{" "}
                   <Link
-                    href="mailto:manav18gadhiya@gmail.com"
+                    href="https://x.com/0xRadioAc7iv"
                     className="text-black hover:underline"
                   >
                     dm
