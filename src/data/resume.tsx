@@ -114,26 +114,26 @@ Apart from code, i'm passionate about video games, astronomy &
       video: "",
     },
     {
-      title: "FuelCaster",
-      href: "https://github.com/ForkingAwesome/fuelcaster",
-      dates: "April 2024",
+      title: "Rate Limiting Library",
+      href: "https://github.com/0xRadioAc7iv/rate-limiter",
+      dates: "Dec 2024",
       active: true,
       description:
-        "FuelCaster, featuring the VadaPav Token, is a faucet for the Fuel Network built on Farcaster Frames.",
-      technologies: ["Next.js", "Farcaster Frames", "Fuel", "Sway"],
+        "A Custom Rate Limiting Library for Node.js with Redis support.",
+      technologies: ["Node.js", "Typescript"],
       links: [
         {
           type: "Website",
-          href: "https://x.com/0xSarthak13/status/1788907538043531380",
+          href: "https://www.npmjs.com/package/@radioac7iv/rate-limiter",
           icon: <Icons.globe className="size-3" />,
         },
         {
           type: "Source",
-          href: "https://github.com/ForkingAwesome/fuelcaster",
+          href: "https://github.com/0xRadioAc7iv/rate-limiter",
           icon: <Icons.github className="size-3" />,
         },
       ],
-      image: "/projects/fuelcaster.png",
+      image: "/projects/rate-limiter.png",
       video: "",
     },
     {
