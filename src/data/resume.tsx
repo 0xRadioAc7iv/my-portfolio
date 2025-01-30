@@ -8,13 +8,11 @@ export const DATA = {
   description: "Developer, Gamer, Explorer",
   summary: `Hey! I'm Manav 👋
 
-I'm a Software Engineer specializing in Backend. I have experience working in fields
-such as Blockchain & Game Dev. I enjoy building and learning about software and how it works. 💻
+I'm a Backend Engineer who loves building things and understanding how they work under the hood. I am an Explorer and i've worked on multiple Blockchains, Game Development & Blender in the Past.
 
-I have won over 7 hackathons 🏆 and I'm always open to collaboration, so do reach out to me if you'd like to work together. I'm always up for a challenge and excited to learn something new.
+I have won over 7 hackathons 🏆 and love working with people on projects, so do reach out to me if you'd like to work together. I'm always up for a challenge and excited to learn something new.
 
-Apart from code, i'm passionate about video games, astronomy &
-            cricket. Also, I love pizza 🍕 (w/ extra cheeze ofc).
+Outside of coding, I'm into video games, crickets & astronomy. Also, I love pizza 🍕 (w/ extra cheeze ofc).
 `,
   avatarUrl: "/me.jpg",
   skills: [
@@ -36,6 +34,13 @@ Apart from code, i'm passionate about video games, astronomy &
         name: "GitHub",
         url: "https://github.com/0xRadioAc7iv/",
         icon: Icons.github,
+
+        navbar: true,
+      },
+      LeetCode: {
+        name: "LeetCode",
+        url: "https://leetcode.com/0xradioac7iv",
+        icon: Icons.globe,
 
         navbar: true,
       },
@@ -137,20 +142,26 @@ Apart from code, i'm passionate about video games, astronomy &
       video: "",
     },
     {
-      title: "AO Token Deployer",
-      href: "https://github.com/0xRadioAc7iv/token-deployer",
-      dates: "June 2024",
+      title: "Mock Data Generator",
+      href: "https://mock-data-generator-mu.vercel.app/",
+      dates: "January 2025",
       active: true,
-      description: "A No Code Token Deployer for Arweave's AOS",
-      technologies: ["React", "Typescript", "Tailwind", "Lua"],
+      description:
+        "The Mock Data Generator is a powerful and user-friendly tool designed for developers to quickly generate and interact with mock data.",
+      technologies: [
+        "Next.js",
+        "TypeScript",
+        "TailwindCSS",
+        "Gemini Flash 2.0",
+      ],
       links: [
         {
           type: "Source",
-          href: "https://github.com/0xRadioAc7iv/token-deployer",
+          href: "https://github.com/0xRadioAc7iv/mock-data-generator",
           icon: <Icons.github className="size-3" />,
         },
       ],
-      image: "/projects/token-deployer.png",
+      image: "/projects/mock_data_gen.png",
       video: "",
     },
     {
@@ -172,32 +183,20 @@ Apart from code, i'm passionate about video games, astronomy &
       video: "/projects/stablecoin.mp4",
     },
     {
-      title: "BaseWave",
-      href: "https://www.youtube.com/watch?v=i0FlVIL-6FM",
-      dates: "May 2024",
+      title: "AO Token Deployer",
+      href: "https://github.com/0xRadioAc7iv/token-deployer",
+      dates: "June 2024",
       active: true,
-      description:
-        "Frictionless, Decentralized Recurring Payments for Builders on Base built at Onchain Summer [FBI]",
-      technologies: [
-        "Next.js",
-        "TypeScript",
-        "Hardhat",
-        "JavaScript",
-        "TailwindCSS",
-      ],
+      description: "A No Code Token Deployer for Arweave's AOS",
+      technologies: ["React", "Typescript", "Tailwind", "Lua"],
       links: [
         {
-          type: "Demo",
-          href: "https://www.youtube.com/watch?v=i0FlVIL-6FM",
-          icon: <Icons.globe className="size-3" />,
-        },
-        {
           type: "Source",
-          href: "https://github.com/ForkingAwesome/basewave",
+          href: "https://github.com/0xRadioAc7iv/token-deployer",
           icon: <Icons.github className="size-3" />,
         },
       ],
-      image: "/projects/basewave.svg",
+      image: "/projects/token-deployer.png",
       video: "",
     },
     {
