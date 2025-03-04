@@ -7,27 +7,23 @@ export default function Page() {
         Manav Gadhiya
       </h1>
       <p className="mb-4">
-        I'm a Backend Engineer. I love building things (often from scratch) and
-        understanding how they work under the hood. I thrive on solving
-        challenging problems that push me to grow as a software engineer. Also,
-        I'm a Futurist and I love reading about Quantum Computing, AI &
-        Blockchains.
+        I'm a Backend Engineer passionate about scalable, high-performance, and
+        complex systems. I love building things from scratch and understanding
+        how they work under the hood. My curiosity has led me to explore
+        Blockchain, Game Development, and even Blender. As a futurist, I'm
+        deeply interested in Quantum Computing, AI, always seeking to understand
+        the technologies shaping tomorrow.
       </p>
       <p className="mb-4">
-        I've explored Blockchain, Game Development, and even Blender, which
-        sparked my curiosity and gave me the chance to dive into new
-        technologies. It's these experiences that keep me excited about what's
-        next.
+        I've had the opportunity to win 7 hackathons, building projects ranging
+        from an Automated on-chain Poker AI Agent to an authentication system
+        designed to make on-chain onboarding seamless and intuitive.
       </p>
       <p className="mb-4">
-        In my free time, I'm an avid fan of cricket, F1, and video games. Video
-        games, in particular, sparked my curiosity about software development,
-        leading me to dive deep into coding and game mechanics.
-      </p>
-      <p className="mb-4">
-        I've had the chance to win 7 hackathons so far, but honestly, that's
-        just the start. I'm really excited about what's ahead and all the cool
-        projects I still have yet to build.
+        Outside of coding, I'm an avid fan of cricket, F1, astronomy and video
+        games. In fact, it was video games that sparked my fascination with
+        software development, inspiring me to dive deep into coding and system
+        design.
       </p>
       <div className="mt-8">
         <BlogPosts />
