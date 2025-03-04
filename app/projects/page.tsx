@@ -5,14 +5,9 @@ export default function Page() {
     <section>
       <Project
         name="Rate Limiting Library"
-        description="A highly configurable rate-limiting middleware for Express.js applications."
+        description="A highly configurable & performant rate-limiting library for node.js"
         sourceLink="https://github.com/0xRadioAc7iv/rate-limiter"
-        websiteLink="https://www.npmjs.com/package/@radioac7iv/rate-limiter"
-      />
-      <Project
-        name="Node.js Express Template"
-        description="A robust and scalable boilerplate for building modern web applications with Node.js, Express, and TypeScript."
-        sourceLink="https://github.com/0xRadioAc7iv/express-template"
+        websiteLink="https://rate-limiter.0xradioactiv.xyz/"
       />
       <Project
         name="Mock Data Generator"
@@ -25,11 +20,7 @@ export default function Page() {
         description="A feature-rich e-commerce platform with authentication, payment integration, and wishlist/cart functionalities."
         sourceLink="https://github.com/0xRadioAc7iv/E-Commerce-Platform"
       />
-      <Project
-        name="URL Shortener"
-        description="A Basic URL Shortener Application built using Node.js, Express.js & EJS"
-        sourceLink="https://github.com/0xRadioAc7iv/url-shortener"
-      />
+      <div>More to come...</div>
     </section>
   );
 }
