@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 ::selection {
   background-color: #47a3f3;
@@ -53,7 +53,7 @@ html {
 
 .prose .anchor:after {
   @apply text-neutral-300 dark:text-neutral-700;
-  content: '#';
+  content: "#";
 }
 
 .prose *:hover > .anchor {
@@ -131,8 +131,8 @@ pre {
 }
 
 /* Remove Safari input shadow on mobile */
-input[type='text'],
-input[type='email'] {
+input[type="text"],
+input[type="email"] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -147,4 +147,53 @@ table {
 
 .title {
   text-wrap: balance;
+}
+
+.custom-get-started-button {
+  line-height: 20px;
+  color: #f4f0ff;
+  text-align: center;
+  text-decoration: none;
+  border: 1px solid #1e6b3e;
+  position: relative;
+  cursor: pointer;
+  background: linear-gradient(
+      180deg,
+      rgba(30, 107, 62, 0) 0%,
+      rgba(30, 107, 62, 0.2) 100%
+    ),
+    rgba(30, 107, 62, 0.29);
+  box-shadow: inset 0 0 12px rgba(30, 107, 62, 0.24);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.3s ease-in-out;
+}
+
+.custom-get-started-button::before,
+.custom-get-started-button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  z-index: -1;
+  transition: opacity 0.2s cubic-bezier(0.6, 0.6, 0, 1);
+}
+
+.custom-get-started-button:hover {
+  background: linear-gradient(
+      180deg,
+      rgba(30, 107, 62, 0.2) 0%,
+      rgba(30, 107, 62, 0.7) 100%
+    ),
+    rgba(30, 107, 62, 0.1);
+}
+
+.custom-get-started-button:active {
+  background: linear-gradient(180deg, #05502d33 0%, #0a924980 100%),
+    rgba(30, 107, 62, 0.25);
+  box-shadow: inset 0 2px 6px rgba(30, 107, 62, 0.2);
+  transform: translateY(0);
 }

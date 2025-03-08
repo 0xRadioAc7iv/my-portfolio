@@ -4,13 +4,13 @@ export default function Page() {
   return (
     <section>
       <div className="flex gap-3 items-center mb-8">
-        <h1 className="text-4xl font-semibold tracking-tighter">
+        <h1 className="text-4xl font-semibold tracking-tighter leading-none">
           Manav Gadhiya
         </h1>
-        <div className="bg-[#227d48] rounded-full px-3 py-0.5 inline-flex items-center text-white text-sm font-medium hover:bg-[#1e6b3e] transition-colors duration-200">
-          <div className="text-[#2ecc71] mr-1.5 animate-pulse">●</div>{" "}
-          <div>Available for hire</div>
-        </div>
+        <button className="custom-get-started-button bg-[#227d48] rounded-full px-4 py-1.5 inline-flex items-center text-white text-sm font-medium hover:bg-[#1e6b3e] transition-colors duration-200 self-center mt-2">
+          <div className="text-[#2ecc71] mr-1.5 animate-pulse">●</div>
+          <span>Available for hire</span>
+        </button>
       </div>
 
       <p className="mb-4">
