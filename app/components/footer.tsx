@@ -62,17 +62,6 @@ export default function Footer() {
             <p className="ml-2 h-7">Github</p>
           </a>
         </li>
-        <li>
-          <a
-            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
-            rel="noopener noreferrer"
-            target="_blank"
-            href="https://leetcode.com/0xRadioAc7iv"
-          >
-            <ArrowIcon />
-            <p className="ml-2 h-7">Leetcode</p>
-          </a>
-        </li>
       </ul>
     </footer>
   );

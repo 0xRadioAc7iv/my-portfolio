@@ -51,6 +51,16 @@ export default function Page() {
           },
         ]}
       />
+      <Project
+        name="Go File Search CLI"
+        description="Search for files in an instant."
+        sourceLink="https://github.com/0xRadioAc7iv/file-search"
+        features={[
+          {
+            text: "It's Extremely Fast",
+          },
+        ]}
+      />
     </section>
   );
 }
