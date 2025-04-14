@@ -26,38 +26,19 @@ export default function Page() {
         ]}
       />
       <Project
-        name="E-Commerce Platform MVP"
-        description="A full-featured e-commerce platform with modern capabilities."
-        sourceLink="https://github.com/0xRadioAc7iv/E-Commerce-Platform/"
-        // websiteLink=""
-        features={[
-          { text: "JWT Auth w/ Password Reset using Email" },
-          { text: "Wishlist and Cart functionality" },
-          { text: "Stripe Integration for payments" },
-          { text: "Search Functionality" },
-        ]}
-      />
-      <Project
-        name="Mock Data Generator"
-        description="The Mock Data Generator is a powerful and user-friendly tool designed for developers to quickly generate and interact with mock data."
-        sourceLink="https://github.com/0xRadioAc7iv/mock-data-generator"
-        websiteLink="https://mock-data-generator-mu.vercel.app/"
+        name="Decentralized Rendering System"
+        description="A highly parallelized and cheap rendering platform"
+        sourceLink="https://github.com/2BrokeGuys/rendering-frontend"
+        websiteLink="https://renderbro.vercel.app/"
         features={[
           {
-            text: "Copy Data as SQL/MongoDB Insert Query",
+            text: "A distributed system to parallelize 3D rendering tasks across multiple worker nodes, reducing render time by 50x compared to single-node setups",
           },
           {
-            text: "Download Data as CSV & JSON",
+            text: "Built a decentralized 3D rendering platform where users submit jobs via a web UI and rendering is offloaded to external contributors incentivized through Solana-based crypto rewards",
           },
-        ]}
-      />
-      <Project
-        name="Go File Search CLI"
-        description="Search for files in an instant."
-        sourceLink="https://github.com/0xRadioAc7iv/file-search"
-        features={[
           {
-            text: "It's Extremely Fast",
+            text: "Designed a serverless job orchestration pipeline using AWS SQS and Lambda to manage task scheduling, fault tolerance, and load balancing across untrusted worker nodes",
           },
         ]}
       />

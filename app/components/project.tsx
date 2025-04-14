@@ -48,7 +48,7 @@ export function Project({
           )}
         </div>
       </div>
-      <p>{description}</p>
+      <p className="font-semibold">{description}</p>
 
       {features && features.length > 0 && (
         <ul className="list-disc pl-5 mt-2">

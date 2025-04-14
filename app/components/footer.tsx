@@ -62,6 +62,16 @@ export default function Footer() {
             <p className="ml-2 h-7">Github</p>
           </a>
         </li>
+        <li>
+          <a
+            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
+            href="/my_resume.pdf"
+            download
+          >
+            <ArrowIcon />
+            <p className="ml-2 h-7">Download Resume</p>
+          </a>
+        </li>
       </ul>
     </footer>
   );
