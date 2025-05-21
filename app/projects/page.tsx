@@ -42,6 +42,23 @@ export default function Page() {
           },
         ]}
       />
+      <Project
+        name="SolRPC"
+        description="RPC Aggregator for Solana"
+        sourceLink="https://github.com/0xRadioAc7iv/solrpc"
+        websiteLink="https://solrpc.vercel.app/"
+        features={[
+          {
+            text: "Route requests through the lowest-latency RPC nodes based on real-time benchmarking — critical for games, high-frequency trading, and real-time apps.",
+          },
+          {
+            text: "It provides multiple load balancing options depending on your dApp usage and traffic. Currently there are 4 options - Round-Robin, Least Connections, Least Latency and Weighted.",
+          },
+          {
+            text: "Responses are automatically cached based on their nature. There are multiple caching methods - In-Memory, Redis and Memcached.",
+          },
+        ]}
+      />
     </section>
   );
 }
