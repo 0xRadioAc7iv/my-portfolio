@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ExternalLink } from "lucide-react";
 
 type Feature = {
   text: string;
@@ -24,39 +25,55 @@ export function Project({
   published,
 }: ProjectProps) {
   return (
-    <div className="flex flex-col gap-2 mb-6">
-      <div className="flex flex-wrap gap-4 items-center">
-        <h1 className="text-2xl font-semibold">{name}</h1>
+    <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-6 shadow-md transition hover:shadow-lg">
+      <div className="flex items-center justify-between mb-2">
+        <h2 className="text-2xl font-semibold">{name}</h2>
         {published && (
-          <span className="bg-green-700 text-white text-xs px-2 py-0.5 rounded-full">
+          <span className="bg-green-600 text-white text-xs font-medium px-2 py-0.5 rounded-full">
             Published
           </span>
         )}
-        <div className="flex gap-4">
-          <Link href={sourceLink} target="_blank">
-            <p className="underline">Source</p>
-          </Link>
-          {websiteLink && (
-            <Link href={websiteLink} target="_blank">
-              <p className="underline">Website</p>
-            </Link>
-          )}
-          {npmLink && (
-            <Link href={npmLink} target="_blank">
-              <p className="underline">npm</p>
-            </Link>
-          )}
-        </div>
       </div>
-      <p className="font-semibold">{description}</p>
+
+      <p className="text-zinc-300 mb-3">{description}</p>
 
       {features && features.length > 0 && (
-        <ul className="list-disc pl-5 mt-2">
+        <ul className="list-disc pl-5 text-sm text-zinc-400 mb-4 space-y-1">
           {features.map((feature, index) => (
             <li key={index}>{feature.text}</li>
           ))}
         </ul>
       )}
+
+      <div className="flex flex-wrap gap-2 mt-auto">
+        <Link
+          href={sourceLink}
+          target="_blank"
+          className="inline-flex items-center gap-1 text-sm px-3 py-1.5 border border-zinc-700 rounded-lg hover:bg-zinc-800 transition"
+        >
+          Source <ExternalLink size={14} />
+        </Link>
+
+        {websiteLink && (
+          <Link
+            href={websiteLink}
+            target="_blank"
+            className="inline-flex items-center gap-1 text-sm px-3 py-1.5 border border-zinc-700 rounded-lg hover:bg-zinc-800 transition"
+          >
+            Website <ExternalLink size={14} />
+          </Link>
+        )}
+
+        {npmLink && (
+          <Link
+            href={npmLink}
+            target="_blank"
+            className="inline-flex items-center gap-1 text-sm px-3 py-1.5 border border-zinc-700 rounded-lg hover:bg-zinc-800 transition"
+          >
+            npm <ExternalLink size={14} />
+          </Link>
+        )}
+      </div>
     </div>
   );
 }

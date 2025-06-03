@@ -7,7 +7,7 @@ export default function NotFound() {
       <p className="mb-4">
         What are you doing here? Go read my{" "}
         <span className="underline">
-          <a href="/blog">blogs</a>
+          <a href="https://radioactiv.hashnode.dev/">blogs</a>
         </span>
       </p>
     </section>

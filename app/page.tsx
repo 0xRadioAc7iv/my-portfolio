@@ -1,42 +1,92 @@
-import { BlogPosts } from "app/components/posts";
+import { Project } from "./components/project";
 
 export default function Page() {
   return (
-    <section>
-      <div className="flex gap-3 items-center mb-8">
-        <h1 className="text-4xl font-semibold tracking-tighter leading-none">
-          Manav Gadhiya
-        </h1>
-        <button className="custom-get-started-button bg-[#227d48] rounded-full px-4 py-1.5 inline-flex items-center text-white text-sm font-medium hover:bg-[#1e6b3e] transition-colors duration-200 self-center mt-2">
-          <div className="text-[#2ecc71] mr-1.5 animate-pulse">●</div>
-          <span>Available for hire</span>
-        </button>
+    <section className="flex flex-col">
+      <div className="flex flex-col items-center gap-1.5 mb-12">
+        <div className="flex gap-3 items-center">
+          <h1 className="text-6xl font-semibold tracking-tighter leading-none">
+            Manav Gadhiya
+          </h1>
+        </div>
+        <div className="text-center text-xl">Backend Engineer</div>
       </div>
 
-      <p className="mb-4">
+      <p className="mb-4 text-justify">
         I'm a Backend Engineer passionate about scalable, high-performance, and
         complex systems. I love building things from scratch and understanding
-        how they work under the hood. My expertise includes Node.js &
-        Typescript.
+        how they work under the hood. My tech stack is Node.js, Redis, AWS,
+        PostgreSQL and Typescript.
       </p>
-      <p className="mb-4">
-        My curiosity has led me to explore Blockchain, Game Development, and
-        even Blender. As a futurist, I'm deeply interested in Quantum Computing,
-        AI, always seeking to understand the technologies shaping tomorrow.
+      <p className="mb-4 text-justify">
+        I've won 7 hackathons, building projects ranging from an Automated
+        on-chain Poker AI Agent to an authentication system designed to make
+        on-chain onboarding seamless and intuitive.
       </p>
-      <p className="mb-4">
-        I've had the opportunity to win 7 hackathons, building projects ranging
-        from an Automated on-chain Poker AI Agent to an authentication system
-        designed to make on-chain onboarding seamless and intuitive.
+      <p className="mb-4 text-justify">
+        Outside of coding, i spend time watching cricket, F1, astronomy and
+        playing video games.
       </p>
-      <p className="mb-4">
-        Outside of coding, I'm an avid fan of cricket, F1, astronomy and video
-        games. In fact, it was video games that sparked my fascination with
-        software development, inspiring me to dive deep into coding and system
-        design.
-      </p>
-      <div className="mt-8">
-        <BlogPosts />
+      <div className="mt-6 mb-8">
+        <div className="text-lg text-center font-bold mb-4">My Projects</div>
+        <div className="flex flex-col gap-4 mt-6">
+          <Project
+            name="Rate Limiting Library"
+            description="A highly flexible rate limiting solution for Node.js applications."
+            sourceLink="https://github.com/0xRadioAc7iv/rate-limiter"
+            npmLink="https://www.npmjs.com/package/@radioac7iv/rate-limiter"
+            websiteLink="https://rate-limiter.0xradioactiv.xyz/"
+            published={true}
+            features={[
+              {
+                text: "Multi-framework Support: Seamlessly integrates with Express, Fastify & NestJS",
+              },
+              {
+                text: "Storage Options: Compatible with Redis, MongoDB & In-Memory stores",
+              },
+              {
+                text: "Quality Assured: 90% test coverage with comprehensive tests",
+              },
+              {
+                text: "Advanced Features: Dynamic rate limiting, configurable options, optional logging",
+              },
+            ]}
+          />
+          <Project
+            name="Decentralized Rendering System"
+            description="A highly parallelized and cheap rendering platform"
+            sourceLink="https://github.com/2BrokeGuys/rendering-frontend"
+            websiteLink="https://renderbro.vercel.app/"
+            features={[
+              {
+                text: "A distributed system to parallelize 3D rendering tasks across multiple worker nodes, reducing render time by 50x compared to single-node setups",
+              },
+              {
+                text: "Built a decentralized 3D rendering platform where users submit jobs via a web UI and rendering is offloaded to external contributors incentivized through Solana-based crypto rewards",
+              },
+              {
+                text: "Designed a serverless job orchestration pipeline using AWS SQS and Lambda to manage task scheduling, fault tolerance, and load balancing across untrusted worker nodes",
+              },
+            ]}
+          />
+          <Project
+            name="SolRPC"
+            description="RPC Aggregator for Solana"
+            sourceLink="https://github.com/0xRadioAc7iv/solrpc"
+            websiteLink="https://solrpc.vercel.app/"
+            features={[
+              {
+                text: "Route requests through the lowest-latency RPC nodes based on real-time benchmarking — critical for games, high-frequency trading, and real-time apps.",
+              },
+              {
+                text: "It provides multiple load balancing options depending on your dApp usage and traffic. Currently there are 4 options - Round-Robin, Least Connections, Least Latency and Weighted.",
+              },
+              {
+                text: "Responses are automatically cached based on their nature. There are multiple caching methods - In-Memory, Redis and Memcached.",
+              },
+            ]}
+          />
+        </div>
       </div>
     </section>
   );
