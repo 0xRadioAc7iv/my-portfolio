@@ -1,35 +1,52 @@
+import { Experience } from "./components/experience";
 import { Project } from "./components/project";
+import { TechStackSection } from "./components/tech-stack-section";
 
 export default function Page() {
   return (
-    <section className="flex flex-col">
-      <div className="flex flex-col items-center gap-1.5 mb-12">
-        <div className="flex gap-3 items-center">
-          <h1 className="text-6xl font-semibold tracking-tighter leading-none">
-            Manav Gadhiya
-          </h1>
-        </div>
-        <div className="text-center text-xl">Backend Engineer</div>
+    <section className="flex flex-col py-5">
+      <div className="flex flex-col items-center mb-10">
+        <h1 className="text-6xl font-semibold leading-none">Manav Gadhiya</h1>
       </div>
 
-      <p className="mb-4 text-justify">
-        I'm a Backend Engineer passionate about scalable, high-performance, and
-        complex systems. I love building things from scratch and understanding
-        how they work under the hood. My tech stack is Node.js, Redis, AWS,
-        PostgreSQL and Typescript.
+      <p className="mb-4 text-lg text-justify">
+        I’m a Backend Developer. I’m passionate about building scalable,
+        high-performance, and complex systems. I love building things from
+        scratch and understanding how they work under the hood.
       </p>
-      <p className="mb-4 text-justify">
+
+      <p className="mb-4 text-lg text-justify">
         I've won 7 hackathons, building projects ranging from an Automated
         on-chain Poker AI Agent to an authentication system designed to make
         on-chain onboarding seamless and intuitive.
       </p>
-      <p className="mb-4 text-justify">
+      <p className="mb-10 text-lg text-justify">
         Outside of coding, i spend time watching cricket, F1, astronomy and
         playing video games.
       </p>
-      <div className="mt-6 mb-8">
-        <div className="text-lg text-center font-bold mb-4">My Projects</div>
-        <div className="flex flex-col gap-4 mt-6">
+
+      <div className="mb-6 text-2xl font-bold">Tech Stack</div>
+
+      <TechStackSection />
+
+      {/* <div className="mb-6 text-2xl font-bold">Experience</div> */}
+
+      {/* YET TO ADD MORE DETAILS */}
+      {/* <div className="mb-6">
+        <Experience
+          title="Backend Developer"
+          duration="June 2025 – July 2025"
+          companyName=""
+          description=""
+          tasks={[{ text: "" }]}
+          links={[{ label: "Live Demo", href: "https://demo.example.com" }]}
+        />
+      </div> */}
+
+      <div className="mb-6 text-2xl font-bold">My Projects</div>
+
+      <div className="mb-6">
+        <div className="flex flex-col gap-4">
           <Project
             name="Rate Limiting Library"
             description="A highly flexible rate limiting solution for Node.js applications."

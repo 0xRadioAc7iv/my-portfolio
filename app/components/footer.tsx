@@ -48,7 +48,7 @@ export default function Footer() {
             href="https://x.com/0xRadioAc7iv"
           >
             <ArrowIcon />
-            <p className="ml-2 h-7">X</p>
+            <p className="ml-2 h-7">X (Twitter)</p>
           </a>
         </li>
         <li>
@@ -77,10 +77,11 @@ export default function Footer() {
           <a
             className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
             href="/my_resume.pdf"
-            download
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <ArrowIcon />
-            <p className="ml-2 h-7">Download Resume</p>
+            <p className="ml-2 h-7">View Resume</p>
           </a>
         </li>
       </ul>
