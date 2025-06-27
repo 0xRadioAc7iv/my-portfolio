@@ -18,72 +18,30 @@ function ArrowIcon() {
 export default function Footer() {
   return (
     <footer className="mb-16 flex justify-center">
-      <ul className="font-sm mt-4 flex flex-col space-x-0 space-y-2 text-neutral-600 md:flex-row md:space-x-4 md:space-y-0 dark:text-neutral-300">
-        <li>
-          <a
-            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
-            rel="noopener noreferrer"
-            href="mailto:manav18gadhiya@gmail.com"
-          >
-            <ArrowIcon />
-            <p className="ml-2 h-7">Email</p>
-          </a>
-        </li>
-        <li>
-          <a
-            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
-            rel="noopener noreferrer"
-            target="_blank"
-            href="https://www.linkedin.com/in/manavgadhiya"
-          >
-            <ArrowIcon />
-            <p className="ml-2 h-7">LinkedIn</p>
-          </a>
-        </li>
-        <li>
-          <a
-            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
-            rel="noopener noreferrer"
-            target="_blank"
-            href="https://x.com/0xRadioAc7iv"
-          >
-            <ArrowIcon />
-            <p className="ml-2 h-7">X (Twitter)</p>
-          </a>
-        </li>
-        <li>
-          <a
-            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
-            rel="noopener noreferrer"
-            target="_blank"
-            href="https://github.com/0xRadioAc7iv"
-          >
-            <ArrowIcon />
-            <p className="ml-2 h-7">Github</p>
-          </a>
-        </li>
-        <li>
-          <a
-            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
-            rel="noopener noreferrer"
-            target="_blank"
-            href="https://radioactiv.hashnode.dev/"
-          >
-            <ArrowIcon />
-            <p className="ml-2 h-7">Blog</p>
-          </a>
-        </li>
-        <li>
-          <a
-            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
-            href="/my_resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <ArrowIcon />
-            <p className="ml-2 h-7">View Resume</p>
-          </a>
-        </li>
+      <ul className="grid grid-cols-2 gap-x-6 gap-y-3 text-neutral-600 dark:text-neutral-300 sm:flex">
+        {[
+          { label: "Email", href: "mailto:manav18gadhiya@gmail.com" },
+          {
+            label: "LinkedIn",
+            href: "https://www.linkedin.com/in/manavgadhiya",
+          },
+          { label: "X (Twitter)", href: "https://x.com/0xRadioAc7iv" },
+          { label: "Github", href: "https://github.com/0xRadioAc7iv" },
+          { label: "Blog", href: "https://radioactiv.hashnode.dev/" },
+          { label: "Resume", href: "/my_resume.pdf" },
+        ].map(({ label, href }) => (
+          <li key={label}>
+            <a
+              className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
+              rel="noopener noreferrer"
+              target={href.startsWith("mailto:") ? undefined : "_blank"}
+              href={href}
+            >
+              <ArrowIcon />
+              <p className="ml-2 h-7">{label}</p>
+            </a>
+          </li>
+        ))}
       </ul>
     </footer>
   );

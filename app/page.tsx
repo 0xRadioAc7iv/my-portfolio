@@ -6,7 +6,9 @@ export default function Page() {
   return (
     <section className="flex flex-col py-5">
       <div className="flex flex-col items-center mb-10">
-        <h1 className="text-6xl font-semibold leading-none">Manav Gadhiya</h1>
+        <h1 className="text-3xl font-semibold leading-none sm:text-5xl text-center">
+          Hey, I'm Manav Gadhiya
+        </h1>
       </div>
 
       <p className="mb-4 text-lg text-justify">
