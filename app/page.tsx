@@ -31,19 +31,46 @@ export default function Page() {
 
       <TechStackSection />
 
-      {/* <div className="mb-6 text-2xl font-bold">Experience</div> */}
+      <div className="mb-6 text-2xl font-bold">Experience</div>
 
-      {/* YET TO ADD MORE DETAILS */}
-      {/* <div className="mb-6">
+      <div className="flex flex-col gap-4 mb-6">
         <Experience
-          title="Backend Developer"
-          duration="June 2025 – July 2025"
-          companyName=""
-          description=""
-          tasks={[{ text: "" }]}
-          links={[{ label: "Live Demo", href: "https://demo.example.com" }]}
+          title="Freelancer"
+          duration="June 2025 – Present"
+          companyName="Predictify (800+ Users)"
+          description="Telegram Bot for Trading on Polymarket"
+          tasks={[
+            {
+              text: "Architected and Developed a High Performance Telegram Bot enabling market/limit orders, stop-loss/take-profit and portfolio management.",
+            },
+            {
+              text: "Optimized performance and reliability to support 800+ active users and 200+ daily transactions, with real-time notifications and low-latency execution under production workloads.",
+            },
+            {
+              text: "Implemented advanced features such as AutoTrade (real-time copy trading), referral-based fee sharing, custom market subscriptions, and multilingual support (English + Chinese) to drive global adoption.",
+            },
+          ]}
+          links={[{ label: "Link", href: "https://t.me/Predictify_bot" }]}
         />
-      </div> */}
+        <Experience
+          title="Full Stack Developer"
+          duration="July 2025 – Present"
+          companyName="SendIN"
+          description=""
+          tasks={[
+            {
+              text: "Developed a responsive frontend from scratch using React, TypeScript, TailwindCSS and TanStack, integrated Supabase Auth and Onramp Money SDK for KYC, and deployed on Vercel with optimized performance.",
+            },
+            {
+              text: "Architected the backend using NestJS and TypeScript, integrating Stellar Blockchain for wallets, Redis caching, and built automated CI/CD pipelines with GitHub Actions. Used AWS for various integrations (SNS for phone verification, SQS + Lambda for in-app notifications).",
+            },
+            {
+              text: "Integrated a 3rd-party service — Onramp/Offramp APIs with webhook updates, Supabase for authentication & database, Resend for transactional emails, and Passkey support — ensuring reliability and scalability across staging and production environments.",
+            },
+          ]}
+          links={[{ label: "Live Website", href: "https://sendin.app" }]}
+        />
+      </div>
 
       <div className="mb-6 text-2xl font-bold">My Projects</div>
 
