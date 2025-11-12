@@ -36,8 +36,8 @@ export default function Page() {
       <div className="flex flex-col gap-4 mb-6">
         <Experience
           title="Freelancer"
-          duration="June 2025 – Present"
-          companyName="Predictify (800+ Users)"
+          duration="June 2025 – Oct 2025"
+          companyName="Predictify (2000+ Users)"
           description="Telegram Bot for Trading on Polymarket"
           tasks={[
             {
@@ -55,7 +55,7 @@ export default function Page() {
         <Experience
           title="Full Stack Developer"
           duration="July 2025 – Present"
-          companyName="SendIN"
+          companyName="SendIN (Contract)"
           description=""
           tasks={[
             {
