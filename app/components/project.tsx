@@ -25,42 +25,56 @@ export function Project({
   published,
 }: ProjectProps) {
   return (
-    <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-6 shadow-md transition hover:shadow-lg">
-      <div className="flex items-center justify-between mb-2">
-        <h2 className="text-2xl font-semibold">{name}</h2>
+    <div className="rounded-2xl border border-[#1c1c2e] bg-[#0d0d1a] p-6 transition-all duration-200 hover:border-[#28283e] hover:shadow-[0_0_24px_rgba(99,102,241,0.08)]">
+      <div className="flex items-start justify-between gap-4 mb-2">
+        <h2 className="text-sm font-semibold text-[#e4e4f0] leading-snug">
+          {name}
+        </h2>
         {published && (
-          <span className="bg-green-600 text-white text-xs font-medium px-2 py-0.5 rounded-full">
+          <span className="shrink-0 text-[11px] px-2 py-0.5 rounded-full border border-emerald-500/40 bg-emerald-500/10 text-emerald-300">
             Published
           </span>
         )}
       </div>
 
-      <p className="text-zinc-300 mb-3">{description}</p>
+      <p className="text-sm text-[#8a8aaa] mb-4 leading-relaxed">
+        {description}
+      </p>
 
       {features && features.length > 0 && (
-        <ul className="list-disc pl-5 text-sm text-zinc-400 mb-4 space-y-1">
+        <ul className="space-y-2 mb-4">
           {features.map((feature, index) => (
-            <li key={index}>{feature.text}</li>
+            <li
+              key={index}
+              className="text-sm text-[#8a8aaa] leading-relaxed flex gap-2"
+            >
+              <span className="text-[#44445a] mt-[5px] shrink-0 text-[10px]">
+                ◆
+              </span>
+              <span>{feature.text}</span>
+            </li>
           ))}
         </ul>
       )}
 
-      <div className="flex flex-wrap gap-2 mt-auto">
+      <div className="flex flex-wrap gap-2">
         <Link
           href={sourceLink}
           target="_blank"
-          className="inline-flex items-center gap-1 text-sm px-3 py-1.5 border border-zinc-700 rounded-lg hover:bg-zinc-800 transition"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 text-xs px-3 py-1.5 border border-[#1c1c2e] hover:border-[#28283e] text-[#8a8aaa] hover:text-[#e4e4f0] rounded-xl transition-all duration-200"
         >
-          Source <ExternalLink size={14} />
+          Source <ExternalLink size={11} />
         </Link>
 
         {websiteLink && (
           <Link
             href={websiteLink}
             target="_blank"
-            className="inline-flex items-center gap-1 text-sm px-3 py-1.5 border border-zinc-700 rounded-lg hover:bg-zinc-800 transition"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-xs px-3 py-1.5 border border-[#1c1c2e] hover:border-[#28283e] text-[#8a8aaa] hover:text-[#e4e4f0] rounded-xl transition-all duration-200"
           >
-            Website <ExternalLink size={14} />
+            Website <ExternalLink size={11} />
           </Link>
         )}
 
@@ -68,9 +82,10 @@ export function Project({
           <Link
             href={npmLink}
             target="_blank"
-            className="inline-flex items-center gap-1 text-sm px-3 py-1.5 border border-zinc-700 rounded-lg hover:bg-zinc-800 transition"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-xs px-3 py-1.5 border border-[#1c1c2e] hover:border-[#28283e] text-[#8a8aaa] hover:text-[#e4e4f0] rounded-xl transition-all duration-200"
           >
-            npm <ExternalLink size={14} />
+            npm <ExternalLink size={11} />
           </Link>
         )}
       </div>

@@ -1,139 +1,244 @@
-import { Experience } from "./components/experience";
-import { Project } from "./components/project";
+import { ProjectsAccordion } from "./components/projects-accordion";
+import { OtherAccordion } from "./components/other-accordion";
+import { DotGrid } from "./components/dot-grid";
 import { TechStackSection } from "./components/tech-stack-section";
 
-export default function Page() {
+type Project = {
+  name: string;
+  repo: string;
+  description: string;
+  tags: string[];
+  link: string;
+  website?: string;
+  npm?: string;
+};
+
+const PROJECTS: Record<string, Project[]> = {
+  "Papers / RFCs": [
+    {
+      name: "Bitcask",
+      repo: "bitcask",
+      description:
+        "Go implementation of the Bitcask key-value storage engine, inspired by Basho's Riak design, featuring append-only storage and compaction.",
+      tags: ["Go"],
+      link: "https://github.com/0xRadioAc7iv/go-bitcask",
+    },
+    {
+      name: "Write-Ahead Log",
+      repo: "wal",
+      description:
+        "WAL implementation in Go exploring durability guarantees, crash recovery, and sequential disk writes.",
+      tags: ["Go"],
+      link: "https://github.com/0xRadioAc7iv/wal",
+    },
+    {
+      name: "TOTP Service",
+      repo: "totp-service",
+      description:
+        "Standalone 2FA service implementing RFC 6238 with envelope encryption via AWS KMS and replay protection.",
+      tags: ["Go", "RFC 6238"],
+      link: "https://github.com/0xRadioAc7iv/totp-service",
+    },
+  ],
+  Libraries: [
+    {
+      name: "Rate Limiter",
+      repo: "rate-limiter",
+      description:
+        "Fixed-window rate limiting library supporting Express, Fastify, and NestJS with Redis, MongoDB, and in-memory stores.",
+      tags: ["Node.js"],
+      link: "https://github.com/0xRadioAc7iv/rate-limiter",
+      npm: "https://www.npmjs.com/package/@radioac7iv/rate-limiter",
+      website: "https://rate-limiter.0xradioactiv.xyz/",
+    },
+  ],
+  "Full-stack": [
+    {
+      name: "ZeroDeploy",
+      repo: "zerodeploy",
+      description:
+        "Experimental mini deployment platform with a fetch–build–store pipeline capable of deploying Vite applications with project-specific URLs.",
+      tags: ["TypeScript", "Experimental"],
+      link: "https://github.com/0xRadioAc7iv/zerodeploy",
+    },
+  ],
+  "Systems / Infra": [
+    {
+      name: "Authoritative Game Server",
+      repo: "authoritative-game-server",
+      description:
+        "Tick-based real-time multiplayer server in Go exploring UDP networking, simulation loops, and server-side state management.",
+      tags: ["Go"],
+      link: "https://github.com/0xRadioAc7iv/game-server",
+    },
+    {
+      name: "Load Balancer",
+      repo: "load-balancer",
+      description:
+        "Layer 7 reverse proxy implementing multiple load-balancing strategies, rate limiting, response caching, and health checks.",
+      tags: ["Go"],
+      link: "https://github.com/0xRadioAc7iv/load-balancer-nodejs ",
+    },
+    {
+      name: "SolRPC",
+      repo: "solrpc",
+      description:
+        "RPC aggregator for Solana nodes built during the Breakout Hackathon, focused on request routing and reliability.",
+      tags: ["Node.js", "Solana"],
+      link: "https://github.com/0xRadioAc7iv/solrpc",
+      website: "https://solrpc.vercel.app/",
+    },
+  ],
+};
+
+const EXPERIENCE = [
+  {
+    company: "SendIN",
+    role: "Full Stack Developer",
+    period: "Jul 2025 – Present",
+    link: "https://sendin.app",
+    description:
+      "Developed the full platform from scratch — React/TanStack frontend, NestJS backend with Stellar blockchain wallets, Redis caching, AWS (SNS/SQS/Lambda) integrations, and CI/CD pipelines.",
+  },
+  {
+    company: "Predictify",
+    role: "Freelancer",
+    period: "Jun – Oct 2025",
+    link: "https://t.me/Predictify_bot",
+    description:
+      "Built a high-performance Telegram trading bot for Polymarket supporting 2000+ users — real-time market/limit orders, AutoTrade copy-trading, stop-loss/TP, and multilingual support (EN + ZH).",
+  },
+];
+
+const MARQUEE_FACTS = [
+  "has a Steam backlog that will outlive him (owns every far cry game)",
+  "watches every F1 race live (du du du, MAX VERSTAPPEN!!!)",
+  "Got an Ace in Valorant while playing at 20 FPS (proudest gaming moment)",
+];
+
+async function getStarMap(): Promise<Record<string, number>> {
+  try {
+    const res = await fetch(
+      "https://api.github.com/users/0xRadioAc7iv/repos?per_page=100",
+      { next: { revalidate: 3600 } },
+    );
+    if (!res.ok) return {};
+    const repos: Array<{ name: string; stargazers_count: number }> =
+      await res.json();
+    return Object.fromEntries(
+      repos.map((r) => [r.name.toLowerCase(), r.stargazers_count]),
+    );
+  } catch {
+    return {};
+  }
+}
+
+export default async function Page() {
+  const stars = await getStarMap();
+
   return (
-    <section className="flex flex-col py-5">
-      <div className="flex flex-col items-center mb-10">
-        <h1 className="text-3xl font-semibold leading-none sm:text-5xl text-center">
-          Hey, I'm Manav Gadhiya
-        </h1>
+    <>
+      {/* Ambient background */}
+      <div
+        className="fixed inset-0 overflow-hidden pointer-events-none"
+        aria-hidden="true"
+      >
+        {/* Dot grid + cursor glow */}
+        <DotGrid />
       </div>
 
-      <p className="mb-4 text-lg text-justify">
-        I’m a Backend Developer. I’m passionate about building scalable,
-        high-performance, and complex systems. I love building things from
-        scratch and understanding how they work under the hood.
-      </p>
+      {/* Page content */}
+      <div className="relative max-w-2xl mx-auto px-6 py-10 pb-24 space-y-14 animate-fade-up">
+        {/* ── Bio ── */}
+        <section className="flex flex-col gap-3">
+          <p className="text-base text-[#c8c8e0] leading-relaxed">
+            I&apos;m a backend engineer who likes to understand how things work
+            at a low level: game servers, protocols, storage engines,
+            distributed systems. When something catches my curiosity, I build it
+            to figure it out.
+          </p>
+          <p className="text-base text-[#c8c8e0] leading-relaxed">
+            I care about performance and correctness. Not prematurely, but
+            deliberately. Systems that are easy to reason about and hard to
+            break.
+          </p>
+          <p className="text-base text-[#c8c8e0] leading-relaxed">
+            Outside of work: cricket, video games, and reading about astronomy.
+          </p>
+          <p className="text-sm text-[#c8c8e0]/50 leading-relaxed">
+            Oh, and there are a few easter eggs hidden around here. Can you find
+            them all?
+          </p>
+        </section>
 
-      <p className="mb-4 text-lg text-justify">
-        I've won 7 hackathons, building projects ranging from an Automated
-        on-chain Poker AI Agent to an authentication system designed to make
-        on-chain onboarding seamless and intuitive.
-      </p>
-      <p className="mb-10 text-lg text-justify">
-        Outside of coding, i spend time watching cricket, F1, astronomy and
-        playing video games.
-      </p>
+        {/* ── Tech Stack ── */}
+        <section id="stack">
+          <h2 className="bangers text-3xl text-[#f5f5ff] mb-5">Tech Stack</h2>
+          <TechStackSection />
+        </section>
 
-      <div className="mb-6 text-2xl font-bold">Tech Stack</div>
+        {/* ── Experience ── */}
+        <section id="experience">
+          <h2 className="bangers text-3xl text-[#e4e4f0] mb-5">Experience</h2>
+          <div>
+            {EXPERIENCE.map((exp) => (
+              <div
+                key={exp.company}
+                className="py-4 border-b border-[#1c1c2e] last:border-0"
+              >
+                <div className="flex items-baseline justify-between gap-4 mb-1">
+                  <div className="flex items-baseline gap-3 flex-wrap">
+                    <a
+                      href={exp.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm font-semibold text-[#e4e4f0] hover:text-indigo-400 transition-colors duration-200"
+                    >
+                      {exp.company}
+                    </a>
+                    <span className="text-xs text-[#8888a8]">{exp.role}</span>
+                  </div>
+                  <span className="font-mono text-xs text-[#8888a8] shrink-0">
+                    {exp.period}
+                  </span>
+                </div>
+                <p className="text-sm text-[#c8c8e0] leading-relaxed">
+                  {exp.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
 
-      <TechStackSection />
+        {/* ── Side Projects ── */}
+        <section id="projects">
+          <h2 className="bangers text-3xl text-[#e4e4f0] mb-5">
+            Side Projects
+          </h2>
+          <ProjectsAccordion projects={PROJECTS} stars={stars} />
+        </section>
 
-      <div className="mb-6 text-2xl font-bold">Experience</div>
-
-      <div className="flex flex-col gap-4 mb-6">
-        <Experience
-          title="Freelancer"
-          duration="June 2025 – Oct 2025"
-          companyName="Predictify (2000+ Users)"
-          description="Telegram Bot for Trading on Polymarket"
-          tasks={[
-            {
-              text: "Architected and Developed a High Performance Telegram Bot enabling market/limit orders, stop-loss/take-profit and portfolio management.",
-            },
-            {
-              text: "Optimized performance and reliability to support 800+ active users and 200+ daily transactions, with real-time notifications and low-latency execution under production workloads.",
-            },
-            {
-              text: "Implemented advanced features such as AutoTrade (real-time copy trading), referral-based fee sharing, custom market subscriptions, and multilingual support (English + Chinese) to drive global adoption.",
-            },
-          ]}
-          links={[{ label: "Link", href: "https://t.me/Predictify_bot" }]}
-        />
-        <Experience
-          title="Full Stack Developer"
-          duration="July 2025 – Present"
-          companyName="SendIN (Contract)"
-          description=""
-          tasks={[
-            {
-              text: "Developed a responsive frontend from scratch using React, TypeScript, TailwindCSS and TanStack, integrated Supabase Auth and Onramp Money SDK for KYC, and deployed on Vercel with optimized performance.",
-            },
-            {
-              text: "Architected the backend using NestJS and TypeScript, integrating Stellar Blockchain for wallets, Redis caching, and built automated CI/CD pipelines with GitHub Actions. Used AWS for various integrations (SNS for phone verification, SQS + Lambda for in-app notifications).",
-            },
-            {
-              text: "Integrated a 3rd-party service — Onramp/Offramp APIs with webhook updates, Supabase for authentication & database, Resend for transactional emails, and Passkey support — ensuring reliability and scalability across staging and production environments.",
-            },
-          ]}
-          links={[{ label: "Live Website", href: "https://sendin.app" }]}
-        />
+        {/* ── Other Stuff ── */}
+        <section id="other">
+          <h2 className="bangers text-3xl text-[#e4e4f0] mb-5">Other Stuff</h2>
+          <OtherAccordion />
+        </section>
       </div>
 
-      <div className="mb-6 text-2xl font-bold">My Projects</div>
-
-      <div className="mb-6">
-        <div className="flex flex-col gap-4">
-          <Project
-            name="Rate Limiting Library"
-            description="A highly flexible rate limiting solution for Node.js applications."
-            sourceLink="https://github.com/0xRadioAc7iv/rate-limiter"
-            npmLink="https://www.npmjs.com/package/@radioac7iv/rate-limiter"
-            websiteLink="https://rate-limiter.0xradioactiv.xyz/"
-            published={true}
-            features={[
-              {
-                text: "Multi-framework Support: Seamlessly integrates with Express, Fastify & NestJS",
-              },
-              {
-                text: "Storage Options: Compatible with Redis, MongoDB & In-Memory stores",
-              },
-              {
-                text: "Quality Assured: 90% test coverage with comprehensive tests",
-              },
-              {
-                text: "Advanced Features: Dynamic rate limiting, configurable options, optional logging",
-              },
-            ]}
-          />
-          <Project
-            name="Decentralized Rendering System"
-            description="A highly parallelized and cheap rendering platform"
-            sourceLink="https://github.com/2BrokeGuys/rendering-frontend"
-            websiteLink="https://renderbro.vercel.app/"
-            features={[
-              {
-                text: "A distributed system to parallelize 3D rendering tasks across multiple worker nodes, reducing render time by 50x compared to single-node setups",
-              },
-              {
-                text: "Built a decentralized 3D rendering platform where users submit jobs via a web UI and rendering is offloaded to external contributors incentivized through Solana-based crypto rewards",
-              },
-              {
-                text: "Designed a serverless job orchestration pipeline using AWS SQS and Lambda to manage task scheduling, fault tolerance, and load balancing across untrusted worker nodes",
-              },
-            ]}
-          />
-          <Project
-            name="SolRPC"
-            description="RPC Aggregator for Solana"
-            sourceLink="https://github.com/0xRadioAc7iv/solrpc"
-            websiteLink="https://solrpc.vercel.app/"
-            features={[
-              {
-                text: "Route requests through the lowest-latency RPC nodes based on real-time benchmarking — critical for games, high-frequency trading, and real-time apps.",
-              },
-              {
-                text: "It provides multiple load balancing options depending on your dApp usage and traffic. Currently there are 4 options - Round-Robin, Least Connections, Least Latency and Weighted.",
-              },
-              {
-                text: "Responses are automatically cached based on their nature. There are multiple caching methods - In-Memory, Redis and Memcached.",
-              },
-            ]}
-          />
+      {/* ── Marquee ── */}
+      <div className="fixed bottom-0 left-0 right-0 z-40 overflow-hidden border-t border-[#1c1c2e] bg-[#08080e] py-2.5">
+        <div className="flex animate-marquee  whitespace-nowrap">
+          {[...MARQUEE_FACTS, ...MARQUEE_FACTS].map((fact, i) => (
+            <span
+              key={i}
+              className="inline-flex items-center mx-10 font-mono text-[11px] tracking-widest uppercase"
+            >
+              <span className="text-indigo-500/50 mr-3">did you know?</span>
+              <span className="text-[#8888a8]">{fact}</span>
+            </span>
+          ))}
         </div>
       </div>
-    </section>
+    </>
   );
 }
