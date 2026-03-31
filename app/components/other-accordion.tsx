@@ -13,9 +13,9 @@ const GAMES = [
 
 const BLENDER_IMAGES = [
   "/blender/render-1.png",
-  "/blender/render-2.png",
-  "/blender/render-3.png",
-  "/blender/render-4.png",
+  "/blender/render-2.jpg",
+  "/blender/render-3.jpg",
+  "/blender/render-4.jpg",
 ];
 
 const TABS = ["Gaming", "Blender"] as const;
@@ -115,7 +115,10 @@ export function OtherAccordion() {
       </div>
 
       {/* Content */}
-      <div key={active} className="rounded-2xl border border-white/[0.07] bg-[#0d0d1a] overflow-hidden px-5 py-4 animate-fade-up">
+      <div
+        key={active}
+        className="rounded-2xl border border-white/[0.07] bg-[#0d0d1a] overflow-hidden px-5 py-4 animate-fade-up"
+      >
         {active === "Gaming" && (
           <>
             <div className="flex gap-3 overflow-x-auto pb-3">
