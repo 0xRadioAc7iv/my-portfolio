@@ -6,42 +6,42 @@ import { useEffect, useRef, useState } from "react";
 const GAMES = [
   {
     name: "Sleeping Dogs",
-    note: "Comfort replay.",
+    note: "Hong Kong never gets old.",
     appId: "307690",
   },
   {
     name: "Far Cry 3",
-    note: "Still replaying it.",
+    note: "Still the best in the series.",
     appId: "220240",
   },
   {
     name: "Battlefield 1",
-    note: "For the scale.",
+    note: "Nothing matches the scale.",
     appId: "1238840",
   },
   {
     name: "Just Cause 3",
-    note: "Pure chaos.",
+    note: "Explosions as a mechanic.",
     appId: "225540",
   },
   {
     name: "Assassin's Creed II",
-    note: "Pure chaos.",
+    note: "Renaissance Italy done right.",
     appId: "33230",
   },
   {
     name: "Grand Theft Auto 4",
-    note: "Pure chaos.",
+    note: "Niko Bellic's story is peak.",
     appId: "12210",
   },
   {
     name: "Portal",
-    note: "Pure chaos.",
+    note: "The cake was a lie.",
     appId: "400",
   },
   {
     name: "Detroit: Become Human",
-    note: "Cinematic reset.",
+    note: "Every choice feels heavy.",
     appId: "1222140",
   },
 ];
@@ -146,10 +146,7 @@ export function OtherAccordion() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/5" />
                   <div className="absolute inset-x-0 bottom-0 p-2.5 text-white">
-                    <p className="font-mono text-[8px] uppercase tracking-[0.2em] text-white/55">
-                      Favourite
-                    </p>
-                    <h4 className="mt-1 text-[11px] font-semibold leading-tight tracking-[-0.02em]">
+                    <h4 className="text-[11px] font-semibold leading-tight tracking-[-0.02em]">
                       {game.name}
                     </h4>
                     <p className="mt-0.5 text-[10px] text-white/60">
