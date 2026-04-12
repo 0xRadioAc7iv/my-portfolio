@@ -1,24 +1,21 @@
 import { TechStackCard } from "./tech-stack-card";
 
 const techStacks = [
-  "Typescript",
   "Go",
-  "Docker",
-  "Bun",
-  "Next.js",
+  "TypeScript",
   "Redis",
   "PostgreSQL",
+  "Docker",
   "AWS",
+  "Next.js",
 ];
 
 export function TechStackSection() {
   return (
-    <div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-        {techStacks.map((tech) => (
-          <TechStackCard key={tech} name={tech} />
-        ))}
-      </div>
+    <div className="chip-cloud">
+      {techStacks.map((tech) => (
+        <TechStackCard key={tech} name={tech} />
+      ))}
     </div>
   );
 }

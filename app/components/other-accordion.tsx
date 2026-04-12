@@ -1,49 +1,80 @@
 "use client";
 
+import { ArrowUpRight, Expand, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { AchievementToast } from "./achievement-toast";
 
 const GAMES = [
-  { name: "Sleeping Dogs: Definitive Edition", appId: "307690" },
-  { name: "Far Cry 3", appId: "220240" },
-  { name: "Battlefield 1", appId: "1238840" },
-  { name: "Detroit: Become Human", appId: "1222140" },
-  { name: "Just Cause 3", appId: "225540" },
+  {
+    name: "Sleeping Dogs",
+    note: "Comfort replay.",
+    appId: "307690",
+  },
+  {
+    name: "Far Cry 3",
+    note: "Still replaying it.",
+    appId: "220240",
+  },
+  {
+    name: "Battlefield 1",
+    note: "For the scale.",
+    appId: "1238840",
+  },
+  {
+    name: "Just Cause 3",
+    note: "Pure chaos.",
+    appId: "225540",
+  },
+  {
+    name: "Assassin's Creed II",
+    note: "Pure chaos.",
+    appId: "33230",
+  },
+  {
+    name: "Grand Theft Auto 4",
+    note: "Pure chaos.",
+    appId: "12210",
+  },
+  {
+    name: "Portal",
+    note: "Pure chaos.",
+    appId: "400",
+  },
+  {
+    name: "Detroit: Become Human",
+    note: "Cinematic reset.",
+    appId: "1222140",
+  },
 ];
 
-const BLENDER_IMAGES = [
-  "/blender/render-1.png",
-  "/blender/render-2.jpg",
-  "/blender/render-3.jpg",
-  "/blender/render-4.jpg",
+const BLENDER_ITEMS = [
+  {
+    image: "/blender/render-1.png",
+    desc: "Very Tasty",
+  },
+  {
+    image: "/blender/render-2.jpg",
+    desc: "Sus",
+  },
+  {
+    image: "/blender/render-3.jpg",
+    desc: "Realism",
+  },
+  {
+    image: "/blender/render-4.jpg",
+    desc: "PS",
+  },
 ];
-
-const TABS = ["Gaming", "Blender"] as const;
-type Tab = (typeof TABS)[number];
 
 export function OtherAccordion() {
-  const [active, setActive] = useState<Tab>("Gaming");
   const [expandedBlenderImage, setExpandedBlenderImage] = useState<{
     src: string;
     alt: string;
   } | null>(null);
-  const [blenderToastVisible, setBlenderToastVisible] = useState(false);
-
-  const handleBlenderImageClick = (index: number, src: string, alt: string) => {
-    setExpandedBlenderImage({ src, alt });
-    const seen = JSON.parse(
-      localStorage.getItem("blender_seen") ?? "[]",
-    ) as number[];
-    if (!seen.includes(index)) {
-      localStorage.setItem("blender_seen", JSON.stringify([...seen, index]));
-    }
-  };
-
+  const [isBlenderDialogVisible, setIsBlenderDialogVisible] = useState(false);
   const blenderDialogRef = useRef<HTMLDialogElement | null>(null);
   const blenderDialogCloseTimeoutRef = useRef<ReturnType<
     typeof setTimeout
   > | null>(null);
-  const [isBlenderDialogVisible, setIsBlenderDialogVisible] = useState(false);
 
   useEffect(() => {
     return () => {
@@ -65,147 +96,144 @@ export function OtherAccordion() {
   const closeBlenderDialog = () => {
     const dialog = blenderDialogRef.current;
     if (!dialog?.open) return;
-
     setIsBlenderDialogVisible(false);
-
-    const seen = JSON.parse(
-      localStorage.getItem("blender_seen") ?? "[]",
-    ) as number[];
-    if (
-      seen.length >= BLENDER_IMAGES.length &&
-      !localStorage.getItem("achievement_blender")
-    ) {
-      localStorage.setItem("achievement_blender", "1");
-      setBlenderToastVisible(true);
-      setTimeout(() => setBlenderToastVisible(false), 3500);
-    }
-
     if (blenderDialogCloseTimeoutRef.current) {
       clearTimeout(blenderDialogCloseTimeoutRef.current);
     }
     blenderDialogCloseTimeoutRef.current = setTimeout(() => {
       blenderDialogCloseTimeoutRef.current = null;
       if (dialog.open) dialog.close();
-    }, 220);
+    }, 200);
   };
 
   return (
     <>
-      <AchievementToast
-        visible={blenderToastVisible}
-        emoji="🎨"
-        text="Unsolicited Art Critic"
-      />
+      <div className="panel overflow-hidden">
+        <div className="grid lg:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)]">
+          <section className="border-b border-[color:var(--line)] p-5 sm:p-6 lg:border-b-0 lg:border-r">
+            <div className="flex items-end justify-between gap-4 mb-5">
+              <div>
+                <p className="section-kicker">Games</p>
+                <h3 className="mt-1.5 text-xl font-semibold tracking-[-0.045em] text-[color:var(--ink)] sm:text-2xl">
+                  My top favourites.
+                </h3>
+              </div>
+              <a
+                href="https://steamcommunity.com/id/radioac7iv/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="button-secondary shrink-0"
+              >
+                Steam <ArrowUpRight size={14} strokeWidth={1.75} />
+              </a>
+            </div>
 
-      {/* Tabs */}
-      <div className="flex items-center gap-1.5 flex-wrap mb-4">
-        {TABS.map((tab) => (
-          <button
-            key={tab}
-            onClick={() => setActive(tab)}
-            className={`font-mono text-xs px-3 py-1.5 rounded-md border transition-all duration-200 ${
-              active === tab
-                ? "border-indigo-500/50 text-white bg-indigo-500/10"
-                : "border-white/10 text-[#8888a8] hover:text-white/80 hover:border-white/20"
-            }`}
-          >
-            {tab}
-          </button>
-        ))}
-      </div>
-
-      {/* Content */}
-      <div
-        key={active}
-        className="rounded-2xl border border-white/[0.07] bg-[#0d0d1a] overflow-hidden px-5 py-4 animate-fade-up"
-      >
-        {active === "Gaming" && (
-          <>
-            <div className="flex gap-3 overflow-x-auto pb-3">
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
               {GAMES.map((game) => (
                 <a
                   key={game.appId}
                   href={`https://store.steampowered.com/app/${game.appId}/`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`Open ${game.name} on Steam`}
-                  className="shrink-0 aspect-[2/3] w-[106px] overflow-hidden rounded-xl border border-white/10 bg-[#11111c] transition-all duration-200 ease-out hover:border-indigo-500/40 hover:shadow-[0_0_0_1px_rgba(129,140,248,0.18),0_0_18px_rgba(99,102,241,0.14)]"
+                  className="group relative aspect-[2/3] overflow-hidden border border-[color:var(--line)] bg-black transition-transform duration-200 hover:-translate-y-1"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={`https://cdn.cloudflare.steamstatic.com/steam/apps/${game.appId}/library_600x900.jpg`}
                     alt={game.name}
                     loading="lazy"
-                    className="block w-full h-full object-cover"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/5" />
+                  <div className="absolute inset-x-0 bottom-0 p-2.5 text-white">
+                    <p className="font-mono text-[8px] uppercase tracking-[0.2em] text-white/55">
+                      Favourite
+                    </p>
+                    <h4 className="mt-1 text-[11px] font-semibold leading-tight tracking-[-0.02em]">
+                      {game.name}
+                    </h4>
+                    <p className="mt-0.5 text-[10px] text-white/60">
+                      {game.note}
+                    </p>
+                  </div>
                 </a>
               ))}
             </div>
-            <a
-              href="https://steamcommunity.com/id/radioac7iv/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-mono text-xs text-[#8888a8] hover:text-white transition-colors duration-200 inline-block"
-            >
-              My Steam Profile
-            </a>
-          </>
-        )}
+          </section>
 
-        {active === "Blender" && (
-          <>
-            <div className="grid grid-cols-4 gap-2">
-              {BLENDER_IMAGES.map((src, i) => (
+          <section className="p-5 sm:p-6 space-y-4">
+            <div className="flex items-end justify-between gap-4">
+              <div>
+                <p className="section-kicker">3D work</p>
+                <h3 className="mt-1.5 text-xl font-semibold tracking-[-0.045em] text-[color:var(--ink)] sm:text-2xl">
+                  Blender renders I made.
+                </h3>
+              </div>
+              <a
+                href="https://www.artstation.com/manavgadhiya"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="button-secondary shrink-0"
+              >
+                ArtStation <ArrowUpRight size={14} strokeWidth={1.75} />
+              </a>
+            </div>
+
+            <div className="grid grid-cols-2 gap-2">
+              {BLENDER_ITEMS.map((item, index) => (
                 <button
-                  key={i}
+                  key={index}
                   type="button"
                   onClick={() =>
-                    handleBlenderImageClick(i, src, `Blender render ${i + 1}`)
+                    setExpandedBlenderImage({
+                      src: item.image,
+                      alt: `Blender render ${index + 1}`,
+                    })
                   }
-                  className="aspect-square rounded-xl overflow-hidden border border-[#1c1c2e] bg-[#11111c] cursor-pointer transition-all duration-200 ease-out hover:scale-[1.04] hover:-translate-y-1 hover:border-[#28283e] hover:shadow-[0_10px_28px_rgba(0,0,0,0.65)]"
+                  className="group relative aspect-[1.02] overflow-hidden border border-[color:var(--line)] bg-[color:rgba(10,10,10,0.04)] transition-transform duration-200 hover:-translate-y-1"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={src}
-                    alt={`Blender render ${i + 1}`}
-                    className="w-full h-full object-cover"
+                    src={item.image}
+                    alt={`Blender render ${index + 1}`}
+                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]"
                     loading="lazy"
-                    onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).style.display =
-                        "none";
-                    }}
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 flex items-center justify-between px-3 py-2 text-white">
+                    <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-white/70">
+                      {item.desc}
+                    </span>
+                    <Expand size={13} strokeWidth={1.8} />
+                  </div>
                 </button>
               ))}
             </div>
-          </>
-        )}
+          </section>
+        </div>
       </div>
 
       <dialog
         ref={blenderDialogRef}
         className={`blender-preview-dialog${isBlenderDialogVisible ? " blender-preview-dialog-open" : ""}`}
-        onCancel={(e) => {
-          e.preventDefault();
+        onCancel={(event) => {
+          event.preventDefault();
           closeBlenderDialog();
         }}
         onClose={() => {
           setIsBlenderDialogVisible(false);
           setExpandedBlenderImage(null);
         }}
-        onClick={(e) => {
-          if (e.target === e.currentTarget) closeBlenderDialog();
+        onClick={(event) => {
+          if (event.target === event.currentTarget) closeBlenderDialog();
         }}
       >
         {expandedBlenderImage && (
-          <div className="blender-preview-dialog-content relative mx-auto flex items-center justify-center">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={expandedBlenderImage.src}
-              alt={expandedBlenderImage.alt}
-              className="max-h-[85vh] max-w-[92vw] object-contain"
-            />
-          </div>
+          <img
+            src={expandedBlenderImage.src}
+            alt={expandedBlenderImage.alt}
+            className="max-h-[760px] object-contain"
+          />
         )}
       </dialog>
     </>

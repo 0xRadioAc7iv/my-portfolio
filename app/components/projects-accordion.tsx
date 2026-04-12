@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowUpRight } from "lucide-react";
 import { useState } from "react";
 
 type Project = {
@@ -10,100 +11,176 @@ type Project = {
   link: string;
   website?: string;
   npm?: string;
+  goPkg?: string;
 };
 
 type Props = {
   projects: Record<string, Project[]>;
   stars: Record<string, number>;
+  descriptions?: Record<string, string>;
 };
 
-export function ProjectsAccordion({ projects, stars }: Props) {
+export function ProjectsAccordion({
+  projects,
+  stars,
+  descriptions = {},
+}: Props) {
   const categories = Object.keys(projects);
   const [active, setActive] = useState(categories[0]);
   const items = projects[active] ?? [];
 
   return (
-    <div>
-      {/* Category tabs */}
-      <div className="flex items-center gap-1.5 flex-wrap mb-4">
-        {categories.map((cat) => (
+    <div className="panel">
+      <div className="tab-row">
+        {categories.map((category) => (
           <button
-            key={cat}
-            onClick={() => setActive(cat)}
-            className={`font-mono text-xs px-3 py-1.5 rounded-md border transition-all duration-200 ${
-              active === cat
-                ? "border-indigo-500/50 text-white bg-indigo-500/10"
-                : "border-white/10 text-[#8888a8] hover:text-white/80 hover:border-white/20"
-            }`}
+            key={category}
+            onClick={() => setActive(category)}
+            className={`tab-btn${active === category ? " tab-active" : ""}`}
           >
-            {cat}
+            {category}
           </button>
         ))}
       </div>
 
-      {/* Project list */}
-      <div key={active} className="rounded-2xl border border-white/[0.07] bg-[#0d0d1a] overflow-hidden animate-fade-up">
-        {items.map((project, idx) => {
-          const starCount = stars[project.repo.toLowerCase()] ?? 0;
-          return (
-            <div
-              key={project.name}
-              className={`px-5 py-4 transition-colors duration-150 hover:bg-white/[0.02] ${
-                idx !== items.length - 1 ? "border-b border-white/[0.06]" : ""
-              }`}
-            >
-              <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+      {descriptions[active] && (
+        <div className="border-b border-[color:var(--line)] px-5 py-2.5">
+          <p className="text-[11px] leading-relaxed text-[color:var(--muted)]">
+            {descriptions[active]}
+          </p>
+        </div>
+      )}
+
+      {items.map((project, index) => {
+        const starCount = stars[project.repo.toLowerCase()] ?? 0;
+
+        return (
+          <article
+            key={project.name}
+            className={`row-hover ${
+              index !== items.length - 1
+                ? "border-b border-[color:var(--line)]"
+                : ""
+            }`}
+          >
+            <div className="grid grid-cols-[2.5rem_minmax(0,1fr)] sm:grid-cols-[2.5rem_minmax(0,1fr)_auto] items-start">
+              <div className="flex h-full items-start border-r border-[color:var(--line)] py-5 pl-5">
+                <span className="font-mono text-[10px] text-[color:var(--muted)]">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+              </div>
+
+              <div className="px-5 py-5">
+                <div className="flex flex-wrap items-center gap-2">
+                  <h3 className="text-base font-semibold tracking-[-0.04em] text-[color:var(--ink)]">
+                    {project.name}
+                  </h3>
+                  {starCount > 0 && (
+                    <span className="border border-[color:var(--line)] px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.16em] text-[color:var(--muted)]">
+                      ★ {starCount}
+                    </span>
+                  )}
+                </div>
+                <p className="mt-1.5 max-w-2xl text-sm leading-[1.7] text-[color:var(--muted)]">
+                  {project.description}
+                </p>
+                <div className="mt-3 flex flex-wrap gap-1.5">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="border border-[color:var(--line)] bg-[color:rgba(255,255,255,0.7)] px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.16em] text-[color:var(--muted)]"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="hidden sm:flex flex-col items-stretch gap-1.5 border-l border-[color:var(--line)] px-4 py-5 w-[8rem]">
                 <a
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm font-medium text-white/90 hover:text-indigo-400 transition-colors duration-200"
+                  className="button-primary flex justify-center"
                 >
-                  {project.name}
+                  Code <ArrowUpRight size={18} strokeWidth={1.75} />
                 </a>
-                {starCount > 0 && (
-                  <span className="font-mono text-xs text-[#8888a8]">
-                    {starCount} ⭐
-                  </span>
-                )}
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="font-mono text-[10px] px-1.5 py-0.5 rounded border border-white/10 text-[#8888a8]"
+                {project.website && (
+                  <a
+                    href={project.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="button-secondary flex justify-center"
                   >
-                    {tag}
-                  </span>
-                ))}
-                <div className="flex gap-3 ml-auto">
-                  {project.website && (
-                    <a
-                      href={project.website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-mono text-xs text-[#8888a8] hover:text-white transition-colors duration-200"
-                    >
-                      site↗
-                    </a>
-                  )}
-                  {project.npm && (
-                    <a
-                      href={project.npm}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-mono text-xs text-[#8888a8] hover:text-white transition-colors duration-200"
-                    >
-                      npm↗
-                    </a>
-                  )}
-                </div>
+                    Site <ArrowUpRight size={18} strokeWidth={1.75} />
+                  </a>
+                )}
+                {project.npm && (
+                  <a
+                    href={project.npm}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="button-secondary flex justify-center"
+                  >
+                    npm <ArrowUpRight size={18} strokeWidth={1.75} />
+                  </a>
+                )}
+                {project.goPkg && (
+                  <a
+                    href={project.goPkg}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="button-secondary flex justify-center"
+                  >
+                    pkg.go <ArrowUpRight size={18} strokeWidth={1.75} />
+                  </a>
+                )}
               </div>
-              <p className="text-xs text-[#c8c8e0]/70 leading-relaxed">
-                {project.description}
-              </p>
             </div>
-          );
-        })}
-      </div>
+
+            <div className="flex gap-2 border-t border-[color:var(--line)] px-5 py-3 sm:hidden">
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="button-primary"
+              >
+                Code <ArrowUpRight size={16} strokeWidth={1.75} />
+              </a>
+              {project.website && (
+                <a
+                  href={project.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="button-secondary"
+                >
+                  Site <ArrowUpRight size={16} strokeWidth={1.75} />
+                </a>
+              )}
+              {project.npm && (
+                <a
+                  href={project.npm}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="button-secondary"
+                >
+                  npm <ArrowUpRight size={16} strokeWidth={1.75} />
+                </a>
+              )}
+              {project.goPkg && (
+                <a
+                  href={project.goPkg}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="button-secondary"
+                >
+                  pkg.go <ArrowUpRight size={16} strokeWidth={1.75} />
+                </a>
+              )}
+            </div>
+          </article>
+        );
+      })}
     </div>
   );
 }

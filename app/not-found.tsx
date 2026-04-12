@@ -1,34 +1,36 @@
-import { DotGrid } from "./components/dot-grid";
+import { ArrowUpRight } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <div className="flex justify-center mt-16">
-      {/* Background */}
-      <div
-        className="fixed inset-0 overflow-hidden pointer-events-none"
-        aria-hidden="true"
-      >
-        <DotGrid />
-      </div>
+    <div className="page-shell flex min-h-[calc(100vh-120px)] items-center justify-center py-16">
+      <div className="w-full max-w-2xl mx-auto">
+        <div className="border-b border-[color:var(--line)] pb-4 mb-8 flex items-center justify-between">
+          <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-[color:var(--muted)]">
+            Error
+          </span>
+          <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-[color:var(--muted)]">
+            404
+          </span>
+        </div>
 
-      {/* Content */}
-      <div className="flex flex-col items-center justify-center gap-6 px-6 text-center">
-        {/* <p className="font-mono text-xs uppercase tracking-widest text-[#8888a8]">
-          404
-        </p> */}
-        <h1 className="bangers text-5xl sm:text-6xl text-[#f5f5ff]">
-          You Lost?
+        <h1 className="text-[clamp(4rem,14vw,9rem)] font-bold leading-[0.88] tracking-[-0.07em] text-[color:var(--ink)]">
+          Not
+          <br />
+          found.
         </h1>
-        <p className="text-[#c8c8e0]/70 text-sm max-w-xs leading-relaxed">
-          This page doesn&apos;t exist. Impressive dedication to clicking random
-          URLs though.
-        </p>
-        <a
-          href="/"
-          className="font-mono text-xs uppercase tracking-widest text-[#8888a8] hover:text-white border border-white/10 hover:border-indigo-500/40 px-5 py-2.5 rounded-lg transition-all duration-200"
-        >
-          Back to safety
-        </a>
+
+        <div className="mt-8 border-t border-[color:var(--line)] pt-6 grid sm:grid-cols-[1fr_auto] gap-6 items-end">
+          <p className="text-sm leading-[1.8] text-[color:var(--muted)] max-w-sm">
+            This page doesn&apos;t exist. You may have followed a broken link or
+            mistyped the URL.
+          </p>
+          <a
+            href="/"
+            className="button-primary shrink-0 inline-flex items-center gap-2"
+          >
+            Back home <ArrowUpRight size={14} strokeWidth={1.75} />
+          </a>
+        </div>
       </div>
     </div>
   );
