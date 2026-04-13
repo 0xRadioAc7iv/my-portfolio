@@ -37,7 +37,6 @@ export default function Nav() {
             </div>
           </a>
 
-          {/* Row 2: action links + theme toggle */}
           <div className="flex border-t border-[color:var(--line)]">
             {ACTION_LINKS.map(({ label, href }) => (
               <a
@@ -54,7 +53,6 @@ export default function Nav() {
           </div>
         </div>
 
-        {/* ── Desktop layout ── */}
         <div className="hidden md:flex items-center justify-between px-6 py-0">
           <a href="/" className="flex items-center self-stretch">
             <div className="flex h-full items-center border-r border-[color:var(--line)] pr-4 mr-4">
