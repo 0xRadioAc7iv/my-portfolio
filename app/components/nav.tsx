@@ -1,5 +1,7 @@
 "use client";
 
+import ThemeToggle from "./theme-toggle";
+
 const NAV_LINKS = [
   { label: "About", href: "/#about" },
   { label: "Experience", href: "/#experience" },
@@ -15,11 +17,9 @@ const ACTION_LINKS = [
 
 export default function Nav() {
   return (
-    <header className="sticky top-0 z-50 border-b border-[color:var(--line)] bg-[color:rgba(255,255,255,0.76)] backdrop-blur-[18px]">
+    <header className="sticky top-0 z-50 border-b border-[color:var(--line)] bg-[color:var(--nav-bg)] backdrop-blur-[18px]">
       <div className="mx-auto max-w-6xl">
-        {/* ── Mobile layout ── */}
         <div className="md:hidden">
-          {/* Row 1: centered avatar + name */}
           <a href="/" className="flex justify-center items-center py-4 gap-4">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -37,7 +37,7 @@ export default function Nav() {
             </div>
           </a>
 
-          {/* Row 2: action links */}
+          {/* Row 2: action links + theme toggle */}
           <div className="flex border-t border-[color:var(--line)]">
             {ACTION_LINKS.map(({ label, href }) => (
               <a
@@ -45,11 +45,12 @@ export default function Nav() {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 text-center border-r border-[color:var(--line)] last:border-r-0 py-2.5 font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-[color:var(--ink-soft)] transition-all duration-150 hover:bg-[color:rgba(0,0,0,0.04)] hover:text-[color:var(--ink)]"
+                className="flex-1 text-center border-r border-[color:var(--line)] py-2.5 font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-[color:var(--ink-soft)] transition-all duration-150 hover:bg-[color:var(--hover-bg)] hover:text-[color:var(--ink)]"
               >
                 {label}
               </a>
             ))}
+            <ThemeToggle className="flex-1 flex items-center justify-center py-2.5 font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-[color:var(--ink-soft)] transition-all duration-150 hover:bg-[color:var(--hover-bg)] hover:text-[color:var(--ink)]" />
           </div>
         </div>
 
@@ -80,7 +81,7 @@ export default function Nav() {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="border-l border-[color:var(--line)] px-4 py-4 font-mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--muted)] transition-colors duration-150 hover:bg-[color:rgba(0,0,0,0.03)] hover:text-[color:var(--ink)]"
+                  className="border-l border-[color:var(--line)] px-4 py-4 font-mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--muted)] transition-colors duration-150 hover:bg-[color:var(--hover-bg)] hover:text-[color:var(--ink)]"
                 >
                   {link.label}
                 </a>
@@ -93,11 +94,12 @@ export default function Nav() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="border-r border-[color:var(--line)] px-4 py-4 font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-[color:var(--ink-soft)] transition-all duration-150 hover:bg-[color:rgba(0,0,0,0.04)] hover:text-[color:var(--ink)]"
+                  className="border-r border-[color:var(--line)] px-4 py-4 font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-[color:var(--ink-soft)] transition-all duration-150 hover:bg-[color:var(--hover-bg)] hover:text-[color:var(--ink)]"
                 >
                   {label}
                 </a>
               ))}
+              <ThemeToggle className="border-r border-[color:var(--line)] px-4 py-4 font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-[color:var(--ink-soft)] transition-all duration-150 hover:bg-[color:var(--hover-bg)] hover:text-[color:var(--ink)]" />
             </div>
           </div>
         </div>

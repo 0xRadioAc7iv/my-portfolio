@@ -10,11 +10,30 @@
   --line: rgba(0, 0, 0, 0.08);
   --line-strong: rgba(0, 0, 0, 0.18);
   --shadow: 0 2px 16px rgba(0, 0, 0, 0.05);
+  --nav-bg: rgba(255, 255, 255, 0.76);
+  --surface: rgba(255, 255, 255, 0.7);
+  --hover-bg: rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="dark"] {
+  --bg: #0c0c0c;
+  --panel: rgba(18, 18, 18, 0.88);
+  --panel-strong: rgba(22, 22, 22, 0.96);
+  --ink: #f0f0f0;
+  --ink-soft: #d4d4d4;
+  --muted: #737373;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.18);
+  --shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+  --nav-bg: rgba(12, 12, 12, 0.85);
+  --surface: rgba(255, 255, 255, 0.06);
+  --hover-bg: rgba(255, 255, 255, 0.06);
+  color-scheme: dark;
 }
 
 html {
   min-width: 360px;
-  color-scheme: light;
+  color-scheme: light dark;
   scroll-behavior: smooth;
   scroll-padding-top: 56px;
   -webkit-font-smoothing: antialiased;
@@ -525,4 +544,78 @@ a {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+}
+
+/* ─── Dark mode overrides ─── */
+
+[data-theme="dark"] body {
+  background:
+    radial-gradient(
+      ellipse at top left,
+      rgba(255, 255, 255, 0.015) 0%,
+      transparent 50%
+    ),
+    var(--bg);
+}
+
+[data-theme="dark"] body::before {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+}
+
+[data-theme="dark"] ::selection {
+  background: var(--ink);
+  color: #0a0a0a;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+[data-theme="dark"] .button-primary {
+  color: #0a0a0a;
+}
+
+[data-theme="dark"] .button-secondary {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .button-secondary:hover {
+  background: rgba(255, 255, 255, 0.09);
+}
+
+[data-theme="dark"] .chip {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .chip:hover {
+  background: rgba(255, 255, 255, 0.09);
+}
+
+[data-theme="dark"] .row-hover:hover {
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+[data-theme="dark"] .tab-btn:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+[data-theme="dark"] .tab-btn.tab-active {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+@media (min-width: 640px) {
+  [data-theme="dark"] .tab-btn.tab-active {
+    background: rgba(255, 255, 255, 0.04);
+  }
+}
+
+[data-theme="dark"] .blender-preview-dialog {
+  background: rgba(16, 16, 16, 0.96);
+  border-color: rgba(255, 255, 255, 0.1);
 }

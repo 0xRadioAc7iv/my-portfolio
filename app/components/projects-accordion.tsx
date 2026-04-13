@@ -88,7 +88,7 @@ export function ProjectsAccordion({
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="border border-[color:var(--line)] bg-[color:rgba(255,255,255,0.7)] px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.16em] text-[color:var(--muted)]"
+                      className="border border-[color:var(--line)] bg-[color:var(--surface)] px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.16em] text-[color:var(--muted)]"
                     >
                       {tag}
                     </span>
