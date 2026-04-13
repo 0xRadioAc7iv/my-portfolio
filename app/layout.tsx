@@ -7,7 +7,7 @@ import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 
 const DESCRIPTION =
-  "Backend engineer building reliable systems, infrastructure experiments, and thoughtful product experiences.";
+  "Backend engineer building reliable systems, infrastructure experiments, and developer-focused product experiences. Interested in Go and distributed systems.";
 
 export const metadata: Metadata = {
   icons: {
@@ -24,24 +24,15 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://0xradioactiv.xyz",
     siteName: "Manav Gadhiya",
-    title: "Manav Gadhiya",
+    title: "Manav Gadhiya — Backend Engineer & Systems Developer",
     description: DESCRIPTION,
-    images: [
-      {
-        url: "/og.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Manav Gadhiya — Backend Engineer",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Manav Gadhiya",
+    title: "Manav Gadhiya — Backend Engineer & Systems Developer",
     description: DESCRIPTION,
     site: "@radioac7iv",
     creator: "@radioac7iv",
-    images: ["/og.jpg"],
   },
   robots: {
     index: true,
