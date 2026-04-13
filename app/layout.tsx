@@ -6,6 +6,9 @@ import Nav from "./components/nav";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 
+const DESCRIPTION =
+  "Backend engineer building reliable systems, infrastructure experiments, and thoughtful product experiences.";
+
 export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
@@ -15,8 +18,31 @@ export const metadata: Metadata = {
     default: "Manav Gadhiya",
     template: "%s | Manav Gadhiya",
   },
-  description:
-    "Backend engineer building reliable systems, infrastructure experiments, and thoughtful product experiences.",
+  description: DESCRIPTION,
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://0xradioactiv.xyz",
+    siteName: "Manav Gadhiya",
+    title: "Manav Gadhiya",
+    description: DESCRIPTION,
+    images: [
+      {
+        url: "/og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Manav Gadhiya — Backend Engineer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Manav Gadhiya",
+    description: DESCRIPTION,
+    site: "@radioac7iv",
+    creator: "@radioac7iv",
+    images: ["/og.jpg"],
+  },
   robots: {
     index: true,
     follow: true,
