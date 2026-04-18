@@ -1,18 +1,9 @@
 "use client";
 
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
-
-type Project = {
-  name: string;
-  repo: string;
-  description: string;
-  tags: string[];
-  link: string;
-  website?: string;
-  npm?: string;
-  goPkg?: string;
-};
+import type { Project } from "../lib/projects";
 
 type Props = {
   projects: Record<string, Project[]>;
@@ -20,14 +11,53 @@ type Props = {
   descriptions?: Record<string, string>;
 };
 
+type ProjectActionLink = {
+  label: string;
+  href: string;
+  primary?: boolean;
+};
+
+function getGithubRepoName(url: string | undefined): string | null {
+  if (!url) return null;
+  const match = url.match(/^https?:\/\/github\.com\/[^/]+\/([^/]+?)\/?$/);
+  return match ? match[1].toLowerCase() : null;
+}
+
+function getProjectActionLinks(project: Project): ProjectActionLink[] {
+  const links: ProjectActionLink[] = [];
+  if (project.links?.code) {
+    links.push({ label: "Code", href: project.links.code, primary: true });
+  }
+  if (project.links?.site) {
+    links.push({ label: "Site", href: project.links.site });
+  }
+  if (project.links?.npm) {
+    links.push({ label: "npm", href: project.links.npm });
+  }
+  if (project.links?.goPkg) {
+    links.push({ label: "pkg.go", href: project.links.goPkg });
+  }
+  return links;
+}
+
 export function ProjectsAccordion({
   projects,
   stars,
   descriptions = {},
 }: Props) {
   const categories = Object.keys(projects);
-  const [active, setActive] = useState(categories[0]);
+  const [active, setActive] = useState(() => categories[0] ?? "");
   const items = projects[active] ?? [];
+
+  if (categories.length === 0) {
+    return (
+      <div className="panel px-5 py-6 sm:px-6">
+        <p className="text-sm leading-7 text-[color:var(--fg-muted)]">
+          No projects to show right now.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="panel">
@@ -35,6 +65,7 @@ export function ProjectsAccordion({
         {categories.map((category) => (
           <button
             key={category}
+            type="button"
             onClick={() => setActive(category)}
             className={`tab-btn${active === category ? " tab-active" : ""}`}
           >
@@ -45,138 +76,113 @@ export function ProjectsAccordion({
 
       {descriptions[active] && (
         <div className="border-b border-[color:var(--line)] px-5 py-2.5">
-          <p className="text-[11px] leading-relaxed text-[color:var(--muted)]">
+          <p className="text-[11px] leading-relaxed text-[color:var(--fg-muted)]">
             {descriptions[active]}
           </p>
         </div>
       )}
 
       {items.map((project, index) => {
-        const starCount = stars[project.repo.toLowerCase()] ?? 0;
+        const repoName = getGithubRepoName(project.links?.code);
+        const starCount = repoName ? (stars[repoName] ?? 0) : 0;
+        const detailHref = `/project/${project.slug}`;
+        const actionLinks = getProjectActionLinks(project);
+
+        const CardInner = (
+          <>
+            <div className="flex h-full items-start border-r border-[color:var(--line)] py-5 pl-5">
+              <span className="font-mono text-[10px] text-[color:var(--fg-subtle)]">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+            </div>
+            <div className="px-5 py-5">
+              <div className="flex flex-wrap items-center gap-2">
+                <h3 className="text-base font-semibold tracking-[-0.04em] text-[color:var(--ink)]">
+                  <span className="inline-flex items-center gap-1.5">
+                    {project.title}
+                    {project.hasDetail && (
+                      <ArrowRight
+                        size={14}
+                        strokeWidth={1.75}
+                        aria-hidden="true"
+                      />
+                    )}
+                  </span>
+                </h3>
+                {starCount > 0 && (
+                  <span className="border border-[color:var(--line)] px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.16em] text-[color:var(--fg-subtle)]">
+                    {"\u2605"} {starCount}
+                  </span>
+                )}
+              </div>
+              <p className="mt-1.5 max-w-2xl text-sm leading-[1.7] text-[color:var(--fg-muted)]">
+                {project.summary}
+              </p>
+              <div className="mt-3 flex flex-wrap gap-1.5">
+                {project.tech.map((tag) => (
+                  <span
+                    key={tag}
+                    className="border border-[color:var(--line)] bg-[color:var(--surface)] px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.16em] text-[color:var(--fg-subtle)]"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </>
+        );
 
         return (
           <article
-            key={project.name}
+            key={project.slug}
             className={`row-hover ${
               index !== items.length - 1
                 ? "border-b border-[color:var(--line)]"
                 : ""
             }`}
           >
-            <div className="grid grid-cols-[2.5rem_minmax(0,1fr)] sm:grid-cols-[2.5rem_minmax(0,1fr)_auto] items-start">
-              <div className="flex h-full items-start border-r border-[color:var(--line)] py-5 pl-5">
-                <span className="font-mono text-[10px] text-[color:var(--muted)]">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-              </div>
-
-              <div className="px-5 py-5">
-                <div className="flex flex-wrap items-center gap-2">
-                  <h3 className="text-base font-semibold tracking-[-0.04em] text-[color:var(--ink)]">
-                    {project.name}
-                  </h3>
-                  {starCount > 0 && (
-                    <span className="border border-[color:var(--line)] px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.16em] text-[color:var(--muted)]">
-                      ★ {starCount}
-                    </span>
-                  )}
-                </div>
-                <p className="mt-1.5 max-w-2xl text-sm leading-[1.7] text-[color:var(--muted)]">
-                  {project.description}
-                </p>
-                <div className="mt-3 flex flex-wrap gap-1.5">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="border border-[color:var(--line)] bg-[color:var(--surface)] px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.16em] text-[color:var(--muted)]"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="hidden sm:flex flex-col items-stretch gap-1.5 border-l border-[color:var(--line)] px-4 py-5 w-[8rem]">
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="button-primary flex justify-center"
+            <div className="grid grid-cols-1 sm:grid-cols-[minmax(0,1fr)_auto] items-start">
+              {project.hasDetail ? (
+                <Link
+                  href={detailHref}
+                  aria-label={`${project.title} — view case study`}
+                  className="grid grid-cols-[2.5rem_minmax(0,1fr)] no-underline hover:opacity-90"
                 >
-                  Code <ArrowUpRight size={18} strokeWidth={1.75} />
-                </a>
-                {project.website && (
+                  {CardInner}
+                </Link>
+              ) : (
+                <div className="grid grid-cols-[2.5rem_minmax(0,1fr)]">
+                  {CardInner}
+                </div>
+              )}
+
+              <div className="hidden w-[8rem] flex-col items-stretch gap-1.5 border-l border-[color:var(--line)] px-4 py-5 sm:flex">
+                {actionLinks.map((link) => (
                   <a
-                    href={project.website}
+                    key={link.label}
+                    href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="button-secondary flex justify-center"
+                    className={`${link.primary ? "button-primary" : "button-secondary"} flex justify-center`}
                   >
-                    Site <ArrowUpRight size={18} strokeWidth={1.75} />
+                    {link.label} <ArrowUpRight size={18} strokeWidth={1.75} />
                   </a>
-                )}
-                {project.npm && (
-                  <a
-                    href={project.npm}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="button-secondary flex justify-center"
-                  >
-                    npm <ArrowUpRight size={18} strokeWidth={1.75} />
-                  </a>
-                )}
-                {project.goPkg && (
-                  <a
-                    href={project.goPkg}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="button-secondary flex justify-center"
-                  >
-                    pkg.go <ArrowUpRight size={18} strokeWidth={1.75} />
-                  </a>
-                )}
+                ))}
               </div>
             </div>
 
             <div className="flex gap-2 border-t border-[color:var(--line)] px-5 py-3 sm:hidden">
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="button-primary"
-              >
-                Code <ArrowUpRight size={16} strokeWidth={1.75} />
-              </a>
-              {project.website && (
+              {actionLinks.map((link) => (
                 <a
-                  href={project.website}
+                  key={link.label}
+                  href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="button-secondary"
+                  className={link.primary ? "button-primary" : "button-secondary"}
                 >
-                  Site <ArrowUpRight size={16} strokeWidth={1.75} />
+                  {link.label} <ArrowUpRight size={16} strokeWidth={1.75} />
                 </a>
-              )}
-              {project.npm && (
-                <a
-                  href={project.npm}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="button-secondary"
-                >
-                  npm <ArrowUpRight size={16} strokeWidth={1.75} />
-                </a>
-              )}
-              {project.goPkg && (
-                <a
-                  href={project.goPkg}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="button-secondary"
-                >
-                  pkg.go <ArrowUpRight size={16} strokeWidth={1.75} />
-                </a>
-              )}
+              ))}
             </div>
           </article>
         );

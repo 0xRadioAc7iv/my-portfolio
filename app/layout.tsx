@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Nav from "./components/nav";
+import { ExternalLinkIcon } from "./components/external-link-icon";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 
@@ -86,6 +87,7 @@ export default function RootLayout({
                   className="font-mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--muted)] transition-colors duration-200 hover:text-[color:var(--ink)]"
                 >
                   {label}
+                  <ExternalLinkIcon />
                 </a>
               ))}
             </div>

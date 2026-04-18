@@ -213,6 +213,7 @@ export function OtherAccordion() {
       <dialog
         ref={blenderDialogRef}
         className={`blender-preview-dialog${isBlenderDialogVisible ? " blender-preview-dialog-open" : ""}`}
+        aria-label="Blender render preview"
         onCancel={(event) => {
           event.preventDefault();
           closeBlenderDialog();
@@ -226,11 +227,21 @@ export function OtherAccordion() {
         }}
       >
         {expandedBlenderImage && (
-          <img
-            src={expandedBlenderImage.src}
-            alt={expandedBlenderImage.alt}
-            className="max-h-[760px] object-contain"
-          />
+          <div className="blender-preview-dialog-content relative">
+            <button
+              type="button"
+              onClick={closeBlenderDialog}
+              aria-label="Close preview"
+              className="absolute right-3 top-3 z-10 inline-flex h-9 w-9 items-center justify-center border border-[color:var(--line)] bg-[color:var(--panel)] text-[color:var(--ink)]"
+            >
+              <X size={16} strokeWidth={1.75} aria-hidden="true" />
+            </button>
+            <img
+              src={expandedBlenderImage.src}
+              alt={expandedBlenderImage.alt}
+              className="max-h-[760px] object-contain"
+            />
+          </div>
         )}
       </dialog>
     </>

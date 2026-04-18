@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import { ExternalLinkIcon } from "./external-link-icon";
 import ThemeToggle from "./theme-toggle";
 
 const NAV_LINKS = [
@@ -10,9 +12,9 @@ const NAV_LINKS = [
 ];
 
 const ACTION_LINKS = [
-  { label: "Blogs", href: "https://radioactiv.hashnode.dev/" },
-  { label: "GitHub", href: "https://github.com/0xRadioAc7iv" },
-  { label: "Resume", href: "/my_resume.pdf" },
+  { label: "Blogs", href: `/blogs`, samePage: true },
+  { label: "GitHub", href: "https://github.com/0xRadioAc7iv", samePage: false },
+  { label: "Resume", href: "/my_resume.pdf", samePage: false },
 ];
 
 export default function Nav() {
@@ -20,7 +22,7 @@ export default function Nav() {
     <header className="sticky top-0 z-50 border-b border-[color:var(--line)] bg-[color:var(--nav-bg)] backdrop-blur-[18px]">
       <div className="mx-auto max-w-6xl">
         <div className="md:hidden">
-          <a href="/" className="flex justify-center items-center py-4 gap-4">
+          <Link href="/" className="flex justify-center items-center py-4 gap-4">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/avatar.png"
@@ -31,30 +33,41 @@ export default function Nav() {
               <p className="text-xl font-semibold tracking-[-0.03em] text-[color:var(--ink)]">
                 Manav Gadhiya
               </p>
-              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-[color:var(--muted)]">
+              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-[color:var(--fg-subtle)]">
                 Backend engineer
               </p>
             </div>
-          </a>
+          </Link>
 
           <div className="flex border-t border-[color:var(--line)]">
-            {ACTION_LINKS.map(({ label, href }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 text-center border-r border-[color:var(--line)] py-2.5 font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-[color:var(--ink-soft)] transition-all duration-150 hover:bg-[color:var(--hover-bg)] hover:text-[color:var(--ink)]"
-              >
-                {label}
-              </a>
+            {ACTION_LINKS.map(({ label, href, samePage }) => (
+              samePage ? (
+                <Link
+                  key={label}
+                  href={href}
+                  className="flex-1 text-center border-r border-[color:var(--line)] py-2.5 font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-[color:var(--ink-soft)] transition-all duration-150 hover:bg-[color:var(--hover-bg)] hover:text-[color:var(--ink)]"
+                >
+                  {label}
+                </Link>
+              ) : (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 text-center border-r border-[color:var(--line)] py-2.5 font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-[color:var(--ink-soft)] transition-all duration-150 hover:bg-[color:var(--hover-bg)] hover:text-[color:var(--ink)]"
+                >
+                  {label}
+                  <ExternalLinkIcon />
+                </a>
+              )
             ))}
             <ThemeToggle className="flex-1 flex items-center justify-center py-2.5 font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-[color:var(--ink-soft)] transition-all duration-150 hover:bg-[color:var(--hover-bg)] hover:text-[color:var(--ink)]" />
           </div>
         </div>
 
         <div className="hidden md:flex items-center justify-between px-6 py-0">
-          <a href="/" className="flex items-center self-stretch">
+          <Link href="/" className="flex items-center self-stretch">
             <div className="flex h-full items-center border-r border-[color:var(--line)] pr-4 mr-4">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -67,35 +80,46 @@ export default function Nav() {
               <p className="text-sm font-medium tracking-[-0.03em] text-[color:var(--ink)]">
                 Manav Gadhiya
               </p>
-              <p className="font-mono text-[9px] uppercase tracking-[0.22em] text-[color:var(--muted)]">
+              <p className="font-mono text-[9px] uppercase tracking-[0.22em] text-[color:var(--fg-subtle)]">
                 Backend engineer
               </p>
             </div>
-          </a>
+          </Link>
 
           <div className="flex items-center">
             <nav className="flex items-center">
               {NAV_LINKS.map((link) => (
-                <a
+                <Link
                   key={link.label}
                   href={link.href}
                   className="border-l border-[color:var(--line)] px-4 py-4 font-mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--muted)] transition-colors duration-150 hover:bg-[color:var(--hover-bg)] hover:text-[color:var(--ink)]"
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
             </nav>
             <div className="flex items-center border-l border-[color:var(--line)]">
-              {ACTION_LINKS.map(({ label, href }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="border-r border-[color:var(--line)] px-4 py-4 font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-[color:var(--ink-soft)] transition-all duration-150 hover:bg-[color:var(--hover-bg)] hover:text-[color:var(--ink)]"
-                >
-                  {label}
-                </a>
+              {ACTION_LINKS.map(({ label, href, samePage }) => (
+                samePage ? (
+                  <Link
+                    key={label}
+                    href={href}
+                    className="border-r border-[color:var(--line)] px-4 py-4 font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-[color:var(--ink-soft)] transition-all duration-150 hover:bg-[color:var(--hover-bg)] hover:text-[color:var(--ink)]"
+                  >
+                    {label}
+                  </Link>
+                ) : (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="border-r border-[color:var(--line)] px-4 py-4 font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-[color:var(--ink-soft)] transition-all duration-150 hover:bg-[color:var(--hover-bg)] hover:text-[color:var(--ink)]"
+                  >
+                    {label}
+                    <ExternalLinkIcon />
+                  </a>
+                )
               ))}
               <ThemeToggle className="border-r border-[color:var(--line)] px-4 py-4 font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-[color:var(--ink-soft)] transition-all duration-150 hover:bg-[color:var(--hover-bg)] hover:text-[color:var(--ink)]" />
             </div>

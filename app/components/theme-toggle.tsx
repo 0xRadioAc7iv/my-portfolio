@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
+import { useEffect, useState } from "react";
 
 interface ThemeToggleProps {
   className?: string;
@@ -28,7 +28,9 @@ export default function ThemeToggle({ className }: ThemeToggleProps) {
     }
   };
 
-  if (!mounted) return <div className={className} aria-hidden />;
+  if (!mounted) {
+    return <div className={className} aria-hidden />;
+  }
 
   return (
     <button
@@ -37,9 +39,9 @@ export default function ThemeToggle({ className }: ThemeToggleProps) {
       className={className}
     >
       {isDark ? (
-        <Sun size={11} strokeWidth={1.6} />
+        <Sun size={14} strokeWidth={1.6} aria-hidden="true" />
       ) : (
-        <Moon size={11} strokeWidth={1.6} />
+        <Moon size={14} strokeWidth={1.6} aria-hidden="true" />
       )}
     </button>
   );

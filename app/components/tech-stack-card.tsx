@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import {
   SiDocker,
   SiGo,
@@ -12,7 +13,7 @@ type TechStackCardProps = {
   name: string;
 };
 
-export const techIconMap: Record<string, JSX.Element> = {
+export const techIconMap: Record<string, ReactElement> = {
   TypeScript: <SiTypescript />,
   Go: <SiGo />,
   Docker: <SiDocker />,

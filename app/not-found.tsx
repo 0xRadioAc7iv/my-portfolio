@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
 export default function NotFound() {
@@ -24,12 +25,12 @@ export default function NotFound() {
             This page doesn&apos;t exist. You may have followed a broken link or
             mistyped the URL.
           </p>
-          <a
+          <Link
             href="/"
             className="button-primary shrink-0 inline-flex items-center gap-2"
           >
             Back home <ArrowUpRight size={14} strokeWidth={1.75} />
-          </a>
+          </Link>
         </div>
       </div>
     </div>
