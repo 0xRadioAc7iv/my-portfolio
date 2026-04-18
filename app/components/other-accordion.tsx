@@ -48,19 +48,19 @@ const GAMES = [
 
 const BLENDER_ITEMS = [
   {
-    image: "/blender/render-1.png",
+    image: "/blender/render-1.webp",
     desc: "Very Tasty",
   },
   {
-    image: "/blender/render-2.jpg",
+    image: "/blender/render-2.webp",
     desc: "Sus",
   },
   {
-    image: "/blender/render-3.jpg",
+    image: "/blender/render-3.webp",
     desc: "Realism",
   },
   {
-    image: "/blender/render-4.jpg",
+    image: "/blender/render-4.webp",
     desc: "PS",
   },
 ];
